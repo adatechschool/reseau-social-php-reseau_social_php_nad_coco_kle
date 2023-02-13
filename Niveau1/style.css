@@ -1,0 +1,156 @@
+body{
+    background-color: #003;
+    font-family: Arial;
+}
+
+a{text-decoration: none; color:black;}
+a:hover{text-decoration: underline;}
+
+body>header{
+    background-color: #fff;
+    display:flex;
+    width:80em;
+    margin:0 auto 2em auto;    
+    padding:0;
+
+}
+body>header img{
+    height:5em;
+}
+body>header #menu {
+    display:flex;
+    width:50%;
+    align-items: stretch;
+    border-left: 1px solid #99b;
+}
+body>header #menu a{
+    flex:1;
+    text-align: center;
+    padding-top:2em;
+    border-right: 1px solid #99b;
+}
+body>header a:hover
+{
+    background-color: #99b;
+}
+body>header ul{list-style: none;}
+body>header #user
+{
+    margin-left: auto;
+    flex:0.2;
+    border-left: 1px solid #99b;
+}
+body>header #user>a{
+    display:block;
+    text-align: center;
+    padding:2em 0;
+    width:100%;
+}
+body>header #user ul{ 
+    display: none;
+    position: absolute;
+    padding:0;
+    margin:0;
+    margin-left:-5em;
+    background-color: #fff;
+    border: 1px solid #99b;
+
+    z-index: 1;
+}
+body>header #user ul li a{
+    display:block;
+    width:10em;
+    padding:1em;
+    border-bottom: 1px solid #99b;
+}
+body>header #user:hover ul{
+    display:block;
+}
+
+
+#wrapper{
+    display:flex;    
+    width:80em;
+    margin:0 auto 2em auto;
+}
+#wrapper aside{
+    background-color: #fff;
+    flex:1;
+    padding:1em;
+    border-radius: 1em;    
+}
+#wrapper aside img{
+    display: block;
+    width:50%;
+    margin:auto;
+}
+
+#wrapper main{
+    flex:3;
+    padding-left:1em;
+    height: 80vh;
+    overflow-y:  scroll;
+}
+#wrapper main article{
+    background-color: #fff;
+    padding:1em;
+    margin-bottom: 1em ;
+    border-radius: 1em;
+}
+#wrapper main article h3{
+    margin:0;
+    padding:0;
+    font-weight: normal;
+    font-size:1em;
+
+}
+#wrapper main article time{
+    float:left;
+}
+#wrapper main article address{
+    text-align: right;
+    margin-bottom: 1em;
+}
+#wrapper main article p{
+    margin:0;
+}
+#wrapper main article footer{
+    margin-top: 1em;
+    text-align: right;
+}
+#wrapper main article footer small{
+    float:left;
+}
+
+#wrapper.admin{flex-direction: row-reverse}
+#wrapper.admin aside{flex:1;margin-left:1em;border-radius:0;padding:0;}
+#wrapper.admin main{flex:2;background-color: #fff;border-radius: 0;padding:0;}
+#wrapper.admin h2{text-align: center;}
+#wrapper.admin h3{margin:0;}
+#wrapper.admin nav{text-align: right;}
+#wrapper.admin article{border:1px solid #ddd;border-radius: 1em;padding:1em;margin:1em;}
+#wrapper.admin article p{float:left;margin:0;}
+
+
+.parameters dl dt{float:left;font-weight: bold;line-height: 1.5em;}
+.parameters dl dd{margin-left:15em;line-height: 1.5em;}
+
+.contacts {
+    display:flex;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    align-content: flex-start ;
+}
+.contacts article{
+    width:25em;
+    height:7em;
+    margin-right: 1em;
+}
+.contacts article img{
+    float:right;
+    height: 5em;
+}
+
+pre{
+    color:#aaa;
+}

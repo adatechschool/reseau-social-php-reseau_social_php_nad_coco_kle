@@ -36,28 +36,7 @@ include 'connect.env'
                         tous les utilisatrices du site.</p>
                 </section>
             </aside>
-            <main>
-                <!-- L'article qui suit est un exemple pour la présentation et 
-                  @todo: doit etre retiré -->
-                <!-- <article>
-                    <h3>
-                        <time datetime='2020-02-01 11:12:13' >31 février 2010 à 11h12</time>
-                    </h3>
-                    <address>par AreTirer</address>
-                    <div>
-                        <p>Ceci est un paragraphe</p>
-                        <p>Ceci est un autre paragraphe</p>
-                        <p>... de toutes manières il faut supprimer cet 
-                            article et le remplacer par des informations en 
-                            provenance de la base de donnée (voir ci-dessous)</p>
-                    </div>                                            
-                    <footer>
-                        <small>♥1012 </small>
-                        <a href="">#lorem</a>,
-                        <a href="">#piscitur</a>,
-                    </footer>
-                </article>                -->
-
+            <main>        
                 <?php
                 /*
                   // C'est ici que le travail PHP commence
@@ -110,17 +89,9 @@ include 'connect.env'
                 // Etape 3: Parcourir ces données et les ranger bien comme il faut dans du html
                 // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
                 while ($post = $lesInformations->fetch_assoc())
-                {
-                    //la ligne ci-dessous doit etre supprimée mais regardez ce 
-                    //qu'elle affiche avant pour comprendre comment sont organisées les information dans votre 
-                    
+                {           
+                ?>
 
-                    // @todo : Votre mission c'est de remplacer les AREMPLACER par les bonnes valeurs
-                    // ci-dessous par les bonnes valeurs cachées dans la variable $post 
-                    // on vous met le pied à l'étrier avec created
-                    // 
-                    // avec le ? > ci-dessous on sort du mode php et on écrit du html comme on veut... mais en restant dans la boucle
-                    ?>
                     <article>
                         <h3>
                             <time><?php echo $post['author_name'] ?></time>
@@ -131,7 +102,7 @@ include 'connect.env'
                         </div>
                         <footer>
                             <small>❤<?php echo $post['like_number'] ?></small>
-                            <a href=""><?php echo $post['taglist'] ?></a>,
+                            <a href="tags.php?tag_id=<?php echo $post['posts_tags.tag_id']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php

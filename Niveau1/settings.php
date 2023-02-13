@@ -72,24 +72,24 @@ include 'connect.env'
                  */
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
                 //echo "<pre>" . print_r($user, 1) . "</pre>";
-                                
-                echo "<article class='parameters'>
+                ?>                
+                <article class='parameters'>
                     <h3>Mes paramètres</h3>
                     <dl>
                         <dt>Pseudo</dt>
-                        <dd>$user[alias]</dd>
+                        <dd><?php echo "$user[alias]"?></dd>
                         <dt>Email</dt>
-                        <dd>$user[email]</dd>
+                        <dd><?php echo "$user[email]"?></dd>
                         <dt>Nombre de message</dt>
-                        <dd>$user[totalpost]</dd>
+                        <dd><?php echo "$user[totalpost]"?></dd>
                         <dt>Nombre de J'aime donnés </dt>
-                        <dd>$user[totalgiven]</dd>
+                        <dd><?php echo "$user[totalgiven]"?></dd>
                         <dt>Nombre de J'aime reçus</dt>
-                        <dd>$user[totalrecieved]</dd>
+                        <dd><?php echo "$user[totalrecieved]"?></dd>
                     </dl>
 
-                </article>"
-                ?>
+                </article>
+                
             </main>
         </div>
     </body>

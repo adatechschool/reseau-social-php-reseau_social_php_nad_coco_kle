@@ -33,10 +33,10 @@ include 'connect.env'
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez la liste des personnes dont
-                        l'utilisatrice
-                        n° <?php echo intval($_GET['user_id']) ?>
-                        suit les messages
+                    <p>Sur cette page vous trouverez la liste des personnes auxquelles
+                    l'utilisatrice
+                    n° <?php echo intval($_GET['user_id']) ?>
+                    est abbonée
                     </p>
 
                 </section>
@@ -56,12 +56,30 @@ include 'connect.env'
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-                ?>
-                <article>
+                
+                $laQuestionEnSql = "SELECT * FROM `users` LIMIT 50";
+                $lesInformations = $mysqli->query($laQuestionEnSql);
+                // Vérification
+                if ( ! $lesInformations)
+                {
+                    echo("Échec de la requete : " . $mysqli->error);
+                    exit();
+                }
+               
+                
+                while ($tag = $lesInformations->fetch_assoc())
+                {
+                    
+                    ?>
+
+                   <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3>Alexandra</h3>
-                    <p>id:654</p>                    
+                    <h3><strong><?php echo $tag['alias'] ?></strong></h3>
+                    <p><?php echo $tag['email'] ?></p> 
+                    <p><?php echo $tag['id'] ?></p>                   
                 </article>
+                <?php } ?>
+                
             </main>
         </div>
     </body>

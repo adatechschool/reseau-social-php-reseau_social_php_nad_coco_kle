@@ -45,7 +45,7 @@ include 'connect.env'
                 /**
                  * Etape 3: récupérer le nom du mot-clé
                  */
-                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
+                $laQuestionEnSql = "SELECT * FROM tags WHERE label= '$tagId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous

@@ -48,6 +48,7 @@ include 'connect.env'
                  */
 
                 
+
                 //verification
                 if ($mysqli->connect_errno)
                 {
@@ -66,7 +67,7 @@ include 'connect.env'
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
+                    GROUP_CONCAT(DISTINCT tags.label) AS taglist
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
                     LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
@@ -102,7 +103,8 @@ include 'connect.env'
                         </div>
                         <footer>
                             <small>❤<?php echo $post['like_number'] ?></small>
-                            <a href="tags.php?tag_id=<?php echo $post['posts_tags.tag_id']?>">#<?php echo $post['taglist'] ?></a>,
+                            <!-- Manque le lien vers le bon ID sur la ligne en dessous -->
+                            <a href="tags.php?tag_id=<?php echo $post['taglist']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php

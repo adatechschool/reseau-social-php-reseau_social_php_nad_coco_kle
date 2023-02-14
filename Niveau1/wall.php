@@ -48,6 +48,7 @@ include 'header.php'
                                 document.getElementById("abonner-bouton").style.display = "none";
                                 }
                             }
+                            console.log(subscribe())
                         </script>
                 </p>
             </section>

@@ -81,10 +81,10 @@ include 'header.php'
                     <address>par <?php echo $post['author_name'] ?></address>
                     <div>
                         <p><?php echo $post['content']?></p>
-                        <p><?php echo "<pre>" . print_r($user, 1) . "</pre>"; ?></p>
+                        
                     </div>                                            
                     <footer>
-                        <small>♥<?php $post['like_number']?></small>
+                        <small>♥<?php echo $post['like_number']?></small>
                         <!-- attention taglist renvoie tous les tags de l'article
                         sur un même élément, il faut pouvoir isoler chaque tag et les imprimer à la suite,
                         mais chaque article n'a pas le même nombre de tag -->

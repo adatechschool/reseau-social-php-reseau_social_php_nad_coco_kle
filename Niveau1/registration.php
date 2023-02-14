@@ -82,6 +82,10 @@ include 'header.php'
                         </dl>
                         <input type='submit'>
                     </form>
+                    <p>
+                        Déjà un compte ?
+                        <a href='login.php'><strong>Connectez-vous.</strong></a>
+                    </p>
                     <?php } ?>
                 </article>
             </main>

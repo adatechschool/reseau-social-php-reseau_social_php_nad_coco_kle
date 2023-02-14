@@ -1,5 +1,5 @@
 <?php
-include '../../Niveau1/header.php';
+include 'header.php';
 session_start();
 ?>
 <!doctype html>

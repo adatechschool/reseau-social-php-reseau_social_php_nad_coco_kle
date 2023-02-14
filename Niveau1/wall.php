@@ -34,8 +34,8 @@ include 'header.php'
                     <?php echo $user["alias"] ?>
                     (n°
                     <?php echo $userId ?>)
+                    <button><strong>S'abonner</strong></button>
                 </p>
-
             </section>
 
             <section>

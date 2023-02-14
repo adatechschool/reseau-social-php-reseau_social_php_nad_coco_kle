@@ -19,7 +19,7 @@ include 'header.php'
                     <p>Sur cette page vous trouverez la liste des abonnements de
                     l'utilisatrice
                     n° <?php echo intval($_GET['user_id']) ?>
-                    est abbonée
+                    est abonée
                     </p>
 
                 </section>
@@ -32,16 +32,19 @@ include 'header.php'
                 $laQuestionEnSql = "
                     SELECT users.* 
                     FROM followers 
-                    LEFT JOIN users ON users.id=followers.followed_user_id 
-                    WHERE followers.following_user_id='$userId'
+                    LEFT JOIN users ON users.id=followers.following_user_id 
+                    WHERE followers.followed_user_id='$userId'
                     GROUP BY users.id
                     ";
+
+                
                 $lesInformations = $mysqli->query($laQuestionEnSql);
+                
                 // Etape 4: à vous de jouer
                 //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
                 
-                $laQuestionEnSql = "SELECT * FROM `users` LIMIT 50";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
+                // $laQuestionEnSql = "SELECT * FROM `users` LIMIT 50";
+                // $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
                 if ( ! $lesInformations)
                 {

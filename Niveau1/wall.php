@@ -34,7 +34,11 @@ include 'header.php'
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user["alias"]?>
                         (n° <?php echo $userId ?>)
                     </p>
-                    <button><strong>S'abonner</strong></button>
+                    <?php if ($user["user_id"] != 5)?>
+                    <form method="POST" action="wall.php">
+                     <input type="hidden" name="user_id" value="<?php echo $userId ?>">
+                    <button type="submit">S'abonner à <?php echo $user["alias"] ?></button>
+                    </form>
                 </section>
             </aside>
             <main>

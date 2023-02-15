@@ -38,17 +38,17 @@ include 'header.php'
                 <p id="subscribe">
                     <form method="POST" action="wall.php?user_id= <?php echo $userId ?>">
                      <input type="hidden" name="user_id" value="<?php echo $userId ?>">
-                     <button type="submit" onclick="subscribe()">S'abonner à <?php echo $user["alias"] ?></button>
+                     <button type="submit" onclick="subscribe(event)" id ="abonné">S'abonner à <?php echo $user["alias"] ?></button>
                     </form>
                         <script>
-                            function subscribe() {
+                            function subscribe(event) {
                                 var subscribeDiv = document.getElementById("subscribe");
                                 subscribeDiv.innerHTML = "Vous êtes abonné(e) à <?php echo $user["alias"] ?>";
+                                event.preventDefault();
                                 if (subscribeDiv) {
-                                document.getElementById("abonner-bouton").style.display = "none";
+                                document.getElementById("abonné").style.display = "none";
                                 }
                             }
-                            console.log(subscribe())
                         </script>
                 </p>
             </section>

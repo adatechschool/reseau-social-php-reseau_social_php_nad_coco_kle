@@ -60,7 +60,7 @@ include 'header.php'
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     LIMIT 5
-                    ";
+                    ";// query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
 
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification

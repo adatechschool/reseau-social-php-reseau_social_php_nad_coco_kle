@@ -34,11 +34,22 @@ include 'header.php'
                     <?php echo $user["alias"] ?>
                     (n°
                     <?php echo $userId ?>)
-                    <?php if ($user["user_id"] != 5)?>
-                    <form method="POST" action="wall.php">
+                </p>
+                <p id="subscribe">
+                    <form method="POST" action="wall.php?user_id= <?php echo $userId ?>">
                      <input type="hidden" name="user_id" value="<?php echo $userId ?>">
-                    <button type="submit">S'abonner à <?php echo $user["alias"] ?></button>
+                     <button type="submit" onclick="subscribe()">S'abonner à <?php echo $user["alias"] ?></button>
                     </form>
+                        <script>
+                            function subscribe() {
+                                var subscribeDiv = document.getElementById("subscribe");
+                                subscribeDiv.innerHTML = "Vous êtes abonné(e) à <?php echo $user["alias"] ?>";
+                                if (subscribeDiv) {
+                                document.getElementById("abonner-bouton").style.display = "none";
+                                }
+                            }
+                            console.log(subscribe())
+                        </script>
                 </p>
             </section>
 
@@ -94,8 +105,8 @@ include 'header.php'
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            if (!$lesInformations) {
+                    $lesInformations = $mysqli->query($laQuestionEnSql);
+                    if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli->error);
             }
 
@@ -128,10 +139,7 @@ include 'header.php'
                     </footer>
                 </article>
             <?php } ?>
-
-
         </main>
-    </div>
+    </div>            
 </body>
-
 </html>

@@ -60,7 +60,8 @@ include 'header.php'
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     LIMIT 5
-                    ";
+                    ";// query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
+
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
                 if ( ! $lesInformations)
@@ -87,6 +88,7 @@ include 'header.php'
                         </div>
                         <footer>
                             <small>❤<?php echo $post['like_number'] ?></small>
+                            <?php echo $post['tags.id'] ?>
                             <!-- Manque le lien vers le bon ID sur la ligne en dessous -->
                             <a href="tags.php?tag_id=<?php echo $post['taglist']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>

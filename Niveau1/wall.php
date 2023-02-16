@@ -66,8 +66,7 @@ include 'header.php'
             <?php
 
             // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
-            $enCoursDeTraitement = isset($_POST['postToSend']);
-            if ($enCoursDeTraitement) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Etape 2: récupérer ce qu'il y a dans le formulaire 
                 $new_post = $_POST['postToSend'];
                 //Etape 4 : Petite sécurité
@@ -76,15 +75,20 @@ include 'header.php'
                 $lInstructionSql = "INSERT INTO posts 
                                     (id, user_id, content, created, parent_id)
                                     VALUES 
-                                    (NULL, '  $userId  ','  $new_post  ', NOW(), NULL)";
+                                    (NULL, '$userId', '$new_post', NOW(), NULL)";
                 // Etape 6: exécution de la requete
                 $ok = $mysqli->query($lInstructionSql);
+
                 if (!$ok) {
                     echo "Le post a échouée : " . $mysqli->error;
                 } else {
-                    echo "Le post est envoyé : " . $new_post;
+                    // Step 2 of Post/Redirect/Get pattern: send HTTP redirect response
+                    //it redirect the user to the page state where the form was not send, or a thanks page
+                    header("Location: {$_SERVER['REQUEST_URI']}");
+                    exit();
                 }
             }
+
             ?>
         </aside>
 

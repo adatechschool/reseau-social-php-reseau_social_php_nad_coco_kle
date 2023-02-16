@@ -48,10 +48,10 @@ session_start();
                             
                         } else
                         {
-                            echo "Votre connexion est un succès, " . $user['alias'] . ".";
+                            echo "Votre connexion est un succès, " . $user['alias'] . ". Redirection vers votre feed.";
                             // Se souvenir que l'utilisateur s'est connecté pour la suite
-                            // pour le moment $_SESSION renvoie un array vide ?
                             $_SESSION['connected_id']=$user['id'];
+                            $_SESSION['user_alias']=$user['alias'];
                         ?>
                         <meta http-equiv="refresh" content="1; url=feed.php?user_id=<?php echo $_SESSION['connected_id'] ?>" />
                         <?php

@@ -24,9 +24,9 @@ include 'header.php'
             </aside>
             <main class='contacts'>
                 <?php
-                // Etape 1: récupérer l'id de l'utilisateur
+                // Récupérer l'id de l'utilisateur
                 $userId = intval($_GET['user_id']);             
-                // Etape 3: récupérer le nom de l'utilisateur
+                // Récupérer le nom de l'utilisateur
                 $laQuestionEnSql = "
                     SELECT users.*
                     FROM followers
@@ -35,12 +35,8 @@ include 'header.php'
                     GROUP BY users.id
                     ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
-                // Etape 4: à vous de jouer
-                //echo "<pre>" . print_r($user, 1) . "</pre>";
-                //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
+                // Faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
                 while ($follower = $lesInformations->fetch_assoc()){
-                    //echo "<pre>" . print_r($follower, 1) . "</pre>";
-
                 ?>    
                     <article>
                         <img src="user.jpg" alt="blason"/>

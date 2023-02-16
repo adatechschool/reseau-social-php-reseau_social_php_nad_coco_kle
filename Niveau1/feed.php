@@ -1,6 +1,6 @@
 <?php
 include 'connect.env'; 
-include 'header.php'
+include 'header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,12 +14,7 @@ include 'header.php'
         <div id="wrapper">
             <?php
             /**
-             * Cette page est TRES similaire à wall.php. 
-             * Vous avez sensiblement à y faire la meme chose.
-             * Il y a un seul point qui change c'est la requete sql.
-             */
-            /**
-             * Etape 1: Le mur concerne un utilisateur en particulier
+             * Le mur concerne un utilisateur en particulier
              */
             $userId = intval($_GET['user_id']);
             ?>
@@ -27,7 +22,7 @@ include 'header.php'
             <aside>
                 <?php
                 /**
-                 * Etape 3: récupérer le nom de l'utilisateur
+                 * Récupérer le nom de l'utilisateur
                  */
                 $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -44,7 +39,7 @@ include 'header.php'
             <main>
                 <?php
                 /**
-                 * Etape 3: récupérer tous les messages des abonnements
+                 * Récupérer tous les messages des abonnements
                  */
                 $laQuestionEnSql = "
                     SELECT posts.content,
@@ -69,8 +64,7 @@ include 'header.php'
                 }
 
                 /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 * A vous de retrouver comment faire la boucle while de parcours...
+                 * Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
                 while ($post = $lesInformations->fetch_assoc()) {
                 ?>     
@@ -85,9 +79,6 @@ include 'header.php'
                     </div>                                            
                     <footer>
                         <small>♥<?php echo $post['like_number']?></small>
-                        <!-- attention taglist renvoie tous les tags de l'article
-                        sur un même élément, il faut pouvoir isoler chaque tag et les imprimer à la suite,
-                        mais chaque article n'a pas le même nombre de tag -->
                         <a href="">#<?php echo $post['taglist'] ?></a>
                     </footer>
                 </article>

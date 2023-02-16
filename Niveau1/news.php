@@ -22,18 +22,6 @@ include 'header.php'
             </aside>
             <main>        
                 <?php
-                /*
-                  // C'est ici que le travail PHP commence
-                  // Votre mission si vous l'acceptez est de chercher dans la base
-                  // de données la liste des 5 derniers messsages (posts) et
-                  // de l'afficher
-                  // Documentation : les exemples https://www.php.net/manual/fr/mysqli.query.php
-                  // plus généralement : https://www.php.net/manual/fr/mysqli.query.php
-                 */
-
-                
-
-                //verification
                 if ($mysqli->connect_errno)
                 {
                     echo "<article>";
@@ -43,9 +31,6 @@ include 'header.php'
                     exit();
                 }
 
-                // Etape 2: Poser une question à la base de donnée et récupérer ses informations
-                // cette requete vous est donnée, elle est complexe mais correcte, 
-                // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
@@ -60,7 +45,7 @@ include 'header.php'
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     LIMIT 5
-                    ";// query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
+                    ";
 
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
@@ -72,7 +57,7 @@ include 'header.php'
                     exit();
                 }
 
-                // Etape 3: Parcourir ces données et les ranger bien comme il faut dans du html
+                // Parcourir ces données et les ranger bien comme il faut dans du html
                 // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
                 while ($post = $lesInformations->fetch_assoc())
                 {           
@@ -89,13 +74,11 @@ include 'header.php'
                         <footer>
                             <small>❤<?php echo $post['like_number'] ?></small>
                             <?php echo $post['tags.id'] ?>
-                            <!-- Manque le lien vers le bon ID sur la ligne en dessous -->
                             <a href="tags.php?tag_id=<?php echo $post['taglist']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>
                     </article>
                     <?php
-                    // avec le <?php ci-dessus on retourne en mode php 
-                }// cette accolade ferme et termine la boucle while ouverte avant.
+                }
                 ?>
 
             </main>

@@ -53,7 +53,7 @@ session_start();
                             // pour le moment $_SESSION renvoie un array vide ?
                             $_SESSION['connected_id']=$user['id'];
                         ?>
-                        <meta http-equiv="refresh" content="1; url=feed.php?= <?php $_SESSION['connected_id'] ?>" />
+                        <meta http-equiv="refresh" content="1; url=feed.php?user_id=<?php echo $_SESSION['connected_id'] ?>" />
                         <?php
                         }
                     }

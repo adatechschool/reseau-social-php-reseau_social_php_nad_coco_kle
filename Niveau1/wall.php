@@ -18,7 +18,7 @@ include 'header.php'
         // On récupère l'id de l'utilisateur à qui appartient le mur
         $userId = intval($_GET['user_id']);
         // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
-        $currentUserId = intval($_GET['user_id']);
+        $currentUserId = intval($_SESSION['user_id']);
         ?>
 
         <aside>
@@ -42,7 +42,12 @@ include 'header.php'
             
         
                 <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
-                    $sql = "INSERT INTO followers (following_user_id, followed_user_id) VALUES ('$currentUserId', '$userId')";
+                    $sql = "INSERT INTO followers (following_user_id, followed_user_id)
+                            SELECT * FROM (SELECT '2', '3') AS tmp
+                                WHERE NOT EXISTS (
+                            SELECT * FROM followers WHERE following_user_id = '2' AND followed_user_id = '3'
+                                ) LIMIT 1";
+
                     if(isset($_POST['subscribe']))
                     {
                         $result = $mysqli->query($sql);
@@ -67,7 +72,7 @@ include 'header.php'
                     </p>
                         
                     <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
-                    $sql = "DELETE FROM followers WHERE followed_user_id = following_user_id";
+                    $sql = "DELETE FROM followers WHERE following_user_id = '2' AND followed_user_id = '3'";
                     if(isset($_POST['unsubscribe']))
                     {
                         $result = $mysqli->query($sql);

@@ -1,6 +1,6 @@
 <?php
 include 'connect.env';
-include 'header.php'
+include 'header.php';
     ?>
 <!doctype html>
 <html lang="fr">

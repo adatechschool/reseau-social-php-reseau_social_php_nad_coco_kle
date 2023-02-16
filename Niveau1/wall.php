@@ -98,8 +98,8 @@ include 'header.php'
                     posts.created, 
                     users.alias as author_name, 
                     COUNT(likes.id) as like_number,
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist,
-                    GROUP_CONCAT(DISTINCT tags.id) AS tagidlist  
+                    GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
+                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist  
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
                     LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
@@ -138,17 +138,8 @@ include 'header.php'
                             <?php echo $post["like_number"] ?>
                         </small>
 
-                        <?php $explodeTag = explode(",", $post['taglist']) ?>
-                        <?php $explodeTagId = explode(",", $post['tagidlist']) ?>
+                        <?php require("tags_management.php")?>
 
-                        <?php while ($explodeTag) {
-                            $curentTag = array_pop($explodeTag);
-                            $curentTagId = array_shift($explodeTagId) ?>
-                            <a href="tags.php?tag_id=<?php echo $curentTagId ?>">#<?php echo $curentTag ?></a>
-                        <?php
-                        }
-                        ?>
-                        </a>,
                     </footer>
                 </article>
             <?php } ?>

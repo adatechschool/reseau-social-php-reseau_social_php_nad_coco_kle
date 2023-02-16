@@ -50,20 +50,45 @@ include 'header.php'
                         //Vérifie si la requête SQL a réussi
                         if (!$result) {
                         //Si la requête a échoué, affiche un message d'erreur
+                        echo "<br>";
                         echo "Erreur lors de l'ajout de l'utilisateur comme follower: " . $mysqli->error;
                          } else {
                         //Si la requête a réussi, affiche un message de confirmation
                         echo "<br>";
                         echo "L'utilisateur a été ajouté comme follower.";
                         } ;
-                    } ;        
+                    } 
                     ?> 
                      
                     <p id="subscribe">
                         <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
                             <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
                         </form>
-                    </p> 
+                    </p>
+                        
+                    <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+                    $sql = "DELETE FROM followers WHERE followed_user_id = following_user_id";
+                    if(isset($_POST['unsubscribe']))
+                    {
+                        $result = $mysqli->query($sql);
+                        echo "Vous êtes désabonné(e) à " . $user["alias"];
+                        //Vérifie si la requête SQL a réussi
+                        if (!$result) {
+                        //Si la requête a échoué, affiche un message d'erreur
+                        echo "<br>";
+                        echo "Erreur lors de la suppression de l'utilisateur comme follower: " . $mysqli->error;
+                         } else {
+                        //Si la requête a réussi, affiche un message de confirmation
+                        echo "<br>";
+                        echo "L'utilisateur a été retiré comme follower.";
+                        } ;
+                    } ;        
+                    ?> 
+                    <p id="unsubscribe">
+                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                            <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
+                        </form>
+                    </p>                 
 
                              <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton --> 
             </section>

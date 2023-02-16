@@ -88,7 +88,7 @@ include 'header.php'
                         </div>
                         <footer>
                             <small>❤<?php echo $post['like_number'] ?></small>
-                            <?php echo $post['tags.id'] ?>
+                            <?php echo $post['tags_id'] ?>
                             <!-- Manque le lien vers le bon ID sur la ligne en dessous -->
                             <a href="tags.php?tag_id=<?php echo $post['taglist']?>">#<?php echo $post['taglist'] ?></a>,
                         </footer>

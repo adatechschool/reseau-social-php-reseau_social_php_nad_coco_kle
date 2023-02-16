@@ -4,45 +4,32 @@ include 'header.php'
     ?>
 <!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="utf-8">
-    <title>ReSoC - Actualités</title>
-    <meta name="author" content="Julien Falconnet">
-    <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-    <div id="wrapper">
-        <aside>
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
-            <section>
-                <h3>Présentation</h3>
-                <p>Sur cette page vous trouverez les derniers messages de
-                    tous les utilisatrices du site.</p>
-            </section>
-        </aside>
-        <main>
-            <?php
-            /*
-            // C'est ici que le travail PHP commence
-            // Votre mission si vous l'acceptez est de chercher dans la base
-            // de données la liste des 5 derniers messsages (posts) et
-            // de l'afficher
-            // Documentation : les exemples https://www.php.net/manual/fr/mysqli.query.php
-            // plus généralement : https://www.php.net/manual/fr/mysqli.query.php
-            */
-
-
-
-            //verification
-            if ($mysqli->connect_errno) {
-                echo "<article>";
-                echo ("Échec de la connexion : " . $mysqli->connect_error);
-                echo ("<p>Indice: Vérifiez les parametres de <code>new mysqli(...</code></p>");
-                echo "</article>";
-                exit();
-            }
+    <head>
+        <meta charset="utf-8">
+        <title>ReSoC - Actualités</title> 
+        <meta name="author" content="Julien Falconnet">
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div id="wrapper">
+            <aside>
+                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <section>
+                    <h3>Présentation</h3>
+                    <p>Sur cette page vous trouverez les derniers messages de
+                        tous les utilisatrices du site.</p>
+                </section>
+            </aside>
+            <main>        
+                <?php
+                if ($mysqli->connect_errno)
+                {
+                    echo "<article>";
+                    echo("Échec de la connexion : " . $mysqli->connect_error);
+                    echo("<p>Indice: Vérifiez les parametres de <code>new mysqli(...</code></p>");
+                    echo "</article>";
+                    exit();
+                }
 
             // Etape 2: Poser une question à la base de donnée et récupérer ses informations
             // cette requete vous est donnée, elle est complexe mais correcte, 
@@ -72,40 +59,29 @@ include 'header.php'
                 exit();
             }
 
-            // Etape 3: Parcourir ces données et les ranger bien comme il faut dans du html
-            // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
-            while ($post = $lesInformations->fetch_assoc()) {
+                // Parcourir ces données et les ranger bien comme il faut dans du html
+                // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
+                while ($post = $lesInformations->fetch_assoc())
+                {           
                 ?>
 
-                <article>
-                    <h3>
-                        <time>
-                            <?php echo $post['author_name'] ?>
-                        </time>
-                    </h3>
-                    <address>
-                        <?php echo $post['created'] ?>
-                    </address>
-                    <div>
-                        <p>
-                            <?php echo $post['content'] ?>
-                        </p>
-                    </div>
-                    <footer>
-                        <small>❤
-                            <?php echo $post['like_number'] ?>
-                        </small>
-
-                        <!-- Manque le lien vers le bon ID sur la ligne en dessous -->
-
-                        <?php require("tags_management.php")?>
-
-                    </footer>
-                </article>
-            <?php
-                // avec le <?php ci-dessus on retourne en mode php 
-            } // cette accolade ferme et termine la boucle while ouverte avant.
-            ?>
+                    <article>
+                        <h3>
+                            <time><?php echo $post['author_name'] ?></time>
+                        </h3>
+                        <address><?php echo $post['created'] ?></address>
+                        <div>
+                            <p><?php echo $post['content'] ?></p>
+                        </div>
+                        <footer>
+                            <small>❤<?php echo $post['like_number'] ?></small>
+                            <?php echo $post['tags.id'] ?>
+                            <a href="tags.php?tag_id=<?php echo $post['taglist']?>">#<?php echo $post['taglist'] ?></a>,
+                        </footer>
+                    </article>
+                    <?php
+                }
+                ?>
 
         </main>
     </div>

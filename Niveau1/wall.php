@@ -30,7 +30,7 @@ include 'header.php'
 
             <section>
                 <h3>Présentation</h3>
-                <p>Sur cette page vous trouverez tous les message de l'utilisatrice :
+                <p>Sur cette page vous trouverez tous les messages de l'utilisatrice :
                     <?php echo $user["alias"] ?>
                     (n°
                     <?php echo $userId ?>)
@@ -56,7 +56,7 @@ include 'header.php'
             <section>
                 <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
                     <dl>
-                        <dt><label for='postToSend'>Ecrivez içi</label></dt>
+                        <dt><label for='postToSend'>Ecrivez ici</label></dt>
                         <dd><input type='text' name='postToSend'></dd>
                     </dl>
                     <input type='submit'>
@@ -127,7 +127,7 @@ include 'header.php'
                 ?>
                 <article>
                     <h3>
-                        <time datetime='2020-02-01 11:12:13'>31 février 2010 à 11h12</time>
+                        <time><?php echo $post['created']?></time>
                     </h3>
                     <address>par
                         <?php echo $post["author_name"] ?>

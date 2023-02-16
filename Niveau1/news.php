@@ -77,6 +77,7 @@ include 'header.php'
                             <small>❤<?php echo $post['like_number'] ?></small>
                             <?php echo $post['tags.id'] ?>
                             <a href="tags.php?tag_id=<?php echo $post['taglist']?>">#<?php echo $post['taglist'] ?></a>,
+                            <?php require("tages_management.php")?>
                         </footer>
                     </article>
                     <?php

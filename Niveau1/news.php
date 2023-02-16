@@ -100,17 +100,15 @@ include 'header.php'
 
                         <?php $explodeTag = explode(",", $post['taglist']) ?>
                         <?php $explodeTagId = explode(",", $post['tagidlist']) ?>
-                        <?php print_r($explodeTagId) ?>
 
                         <?php while ($explodeTag) {
                             $curentTag = array_pop($explodeTag);
                             $curentTagId = array_shift($explodeTagId) ?>
-                            <a href="tags.php?tag_id=<?php echo $curentTagId ?>">#<?php echo $curentTag ?></a>,
+                            <a href="tags.php?tag_id=<?php echo $curentTagId ?>">#<?php echo $curentTag ?></a>
                         <?php
                         }
                         ?>
 
-                        <!-- explode(",", strval() -->
                     </footer>
                 </article>
             <?php

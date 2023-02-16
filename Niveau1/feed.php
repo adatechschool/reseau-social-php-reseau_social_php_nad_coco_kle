@@ -51,7 +51,8 @@ include 'header.php'
                     posts.created,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist 
+                    GROUP_CONCAT(DISTINCT tags.label) AS taglist,
+                    GROUP_CONCAT(DISTINCT tags.id) AS tagidlist 
                     FROM followers 
                     JOIN users ON users.id=followers.followed_user_id
                     JOIN posts ON posts.user_id=users.id
@@ -88,8 +89,16 @@ include 'header.php'
                         <!-- attention taglist renvoie tous les tags de l'article
                         sur un même élément, il faut pouvoir isoler chaque tag et les imprimer à la suite,
                         mais chaque article n'a pas le même nombre de tag -->
-                        <a href="">#<?php echo $post['taglist'] ?></a>
-                    </footer>
+                        <?php $explodeTag = explode(",", $post['taglist']) ?>
+                        <?php $explodeTagId = explode(",", $post['tagidlist']) ?>
+
+                        <?php while ($explodeTag) {
+                            $curentTag = array_pop($explodeTag);
+                            $curentTagId = array_shift($explodeTagId) ?>
+                            <a href="tags.php?tag_id=<?php echo $curentTagId ?>">#<?php echo $curentTag ?></a>
+                        <?php
+                        }
+                        ?>                    </footer>
                 </article>
                 <?php
                 }

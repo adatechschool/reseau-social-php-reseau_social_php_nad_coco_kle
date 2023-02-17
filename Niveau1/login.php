@@ -1,6 +1,5 @@
 <?php
 include 'header.php';
-session_start();
 ?>
 <!doctype html>
 <html lang="fr">

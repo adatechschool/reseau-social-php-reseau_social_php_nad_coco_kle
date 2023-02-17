@@ -11,7 +11,8 @@ if (!isset($post['tagidlist'])) {
 
 ?>
 <?php $explodeTag = explode(",", $post['taglist']) ?>
-<?php $explodeTagId = explode(",", $post['tagidlist']) ?>
+<?php $explodeTagId = explode(",", $post['tagidlist']);?>
+
 <?php
 
 

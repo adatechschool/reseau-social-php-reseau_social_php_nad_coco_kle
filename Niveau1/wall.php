@@ -1,6 +1,6 @@
 <?php
 include 'connect.env';
-include 'header.php'
+include 'header.php';
     ?>
 <!doctype html>
 <html lang="fr">
@@ -18,7 +18,7 @@ include 'header.php'
         // On récupère l'id de l'utilisateur à qui appartient le mur
         $userId = intval($_GET['user_id']);
         // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
-        $currentUserId = intval($_SESSION['user_id']);
+        $currentUserId = isset($_SESSION['connected_id']) ? intval($_SESSION['connected_id']) : 0; // fixed notice and added isset()
         ?>
 
         <aside>
@@ -43,10 +43,10 @@ include 'header.php'
         
                 <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
                     $sql = "INSERT INTO followers (following_user_id, followed_user_id)
-                            SELECT * FROM (SELECT '2', '3') AS tmp
-                                WHERE NOT EXISTS (
-                            SELECT * FROM followers WHERE following_user_id = '2' AND followed_user_id = '3'
-                                ) LIMIT 1";
+                    SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
+                        WHERE NOT EXISTS (
+                    SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'
+                        ) LIMIT 1";
 
                     if(isset($_POST['subscribe']))
                     {
@@ -72,7 +72,7 @@ include 'header.php'
                     </p>
                         
                     <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
-                    $sql = "DELETE FROM followers WHERE following_user_id = '2' AND followed_user_id = '3'";
+                    $sql = "DELETE FROM followers WHERE following_user_id = $currentUserId AND followed_user_id = $userId";
                     if(isset($_POST['unsubscribe']))
                     {
                         $result = $mysqli->query($sql);

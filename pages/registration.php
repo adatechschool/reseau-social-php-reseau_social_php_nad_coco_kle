@@ -1,6 +1,6 @@
 <?php
-include 'connect.env'; 
-include 'header.php'
+include '../connect.env'; 
+include 'assets\header.php'
 ?>
 <!doctype html>
 <html lang="fr">
@@ -8,7 +8,7 @@ include 'header.php'
         <meta charset="utf-8">
         <title>ReSoC - Inscription</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
         <div id="wrapper" >

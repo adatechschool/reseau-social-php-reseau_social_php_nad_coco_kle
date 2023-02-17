@@ -1,6 +1,6 @@
 <?php
-include 'connect.env'; 
-include 'header.php'
+include '../connect.env'; 
+include '../assets/header.php'
 ?>
 <!doctype html>
 <html lang="fr">
@@ -8,7 +8,7 @@ include 'header.php'
         <meta charset="utf-8">
         <title>ReSoC - Les message par mot-clé</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
         <div id="wrapper">
@@ -34,7 +34,7 @@ include 'header.php'
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages comportant
@@ -81,7 +81,7 @@ include 'header.php'
 
                     
                     ?>                
-                <?php require("post.php")?>
+                <?php require("../assets/post.php")?>
 
                 <?php } ?>
 

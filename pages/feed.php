@@ -1,6 +1,6 @@
 <?php
-include 'connect.env'; 
-include 'header.php';
+include '../connect.env'; 
+include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -8,7 +8,7 @@ include 'header.php';
         <meta charset="utf-8">
         <title>ReSoC - Flux</title>         
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
         <div id="wrapper">
@@ -28,7 +28,7 @@ include 'header.php';
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message des utilisatrices
@@ -71,7 +71,7 @@ include 'header.php';
                  */
                 while ($post = $lesInformations->fetch_assoc()) {
                 ?>     
-                <?php require("post.php")?>
+                <?php require("../assets/post.php")?>
 
                 <?php
                 }

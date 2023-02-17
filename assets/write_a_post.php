@@ -1,5 +1,5 @@
 <section>
-<form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+<form method="post" action="../pages/wall.php?user_id= <?php echo $userId ?>">
                     <dl>
                         <dt><label for='postToSend'>Ecrivez ici</label></dt>
                         <dd><input type='text' name='postToSend'></dd>

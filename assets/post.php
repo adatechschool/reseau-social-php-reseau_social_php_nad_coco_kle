@@ -1,7 +1,7 @@
 <article>
     <h3>
         <time>
-        <a href="wall.php?user_id=<?php echo $post["author_id"] ?>"><?php echo $post['author_name']?></a>
+        <a href="../pages/wall.php?user_id=<?php echo $post["author_id"] ?>"><?php echo $post['author_name']?></a>
         </time>
     </h3>
     <address>

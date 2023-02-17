@@ -1,6 +1,6 @@
 <?php
-include 'connect.env';
-include 'header.php';
+include '../connect.env';
+include '../assets/header.php'
     ?>
 <!doctype html>
 <html lang="fr">
@@ -9,7 +9,7 @@ include 'header.php';
     <meta charset="utf-8">
     <title>ReSoC - Mur</title>
     <meta name="author" content="Julien Falconnet">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@ include 'header.php';
             $user = $lesInformations->fetch_assoc();
             ?>
 
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
 
             <section>
                 <h3>Présentation</h3>
@@ -97,7 +97,7 @@ include 'header.php';
 
                              <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton --> 
             </section>
-            <?php require("write_a_post.php")?>
+            <?php require("../assets/write_a_post.php")?>
 
 
         </aside>
@@ -135,7 +135,7 @@ include 'header.php';
 
                 // echo "<pre>" . print_r($post, 1) . "</pre>";
                 ?>
-            <?php require("post.php")?>
+            <?php require("../assets/post.php")?>
 
             <?php } ?>
         </main>

@@ -1,6 +1,6 @@
 <?php
-include 'connect.env'; 
-include 'header.php'
+include '../connect.env'; 
+include '../assets/header.php'
 ?>
 
 <!doctype html>
@@ -9,7 +9,7 @@ include 'header.php'
         <meta charset="utf-8">
         <title>ReSoC - Administration</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
         <div id="wrapper" class='admin'>

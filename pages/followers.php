@@ -1,6 +1,6 @@
 <?php
-include 'connect.env';
-include 'header.php'
+include '../connect.env';
+include '../assets/header.php'
     ?>
 <!doctype html>
 <html lang="fr">
@@ -9,13 +9,13 @@ include 'header.php'
     <meta charset="utf-8">
     <title>ReSoC - Mes abonnés </title>
     <meta name="author" content="Julien Falconnet">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
 </head>
 
 <body>
     <div id="wrapper">
         <aside>
-            <img src="user.jpg" alt="Portrait de l'utilisatrice" />
+            <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
             <section>
                 <h3>Présentation</h3>
                 <p>Sur cette page vous trouverez la liste des personnes qui
@@ -47,7 +47,7 @@ include 'header.php'
             
                 ?>
                 <article>
-                    <img src="user.jpg" alt="blason" />
+                    <img src="../img/user.jpg" alt="blason" />
                     <h3><a href="wall.php?user_id=<?php echo $follower["id"] ?>"><?php echo $follower["alias"] ?></a></h3>
                     <p>
                         <?php echo $follower["email"] ?>

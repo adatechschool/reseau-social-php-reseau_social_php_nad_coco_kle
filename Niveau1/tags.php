@@ -79,20 +79,8 @@ include 'header.php'
 
                     
                     ?>                
-                    <article>
-                        <h3>
-                            <time datetime='2020-02-01 11:12:13' ><?php echo $post['created'] ?></time>
-                        </h3>
-                        <address><?php echo $post['author_name'] ?></address>
-                        <div>
-                            <p><?php echo $post['content'] ?></p>
-                            
-                        </div>                                            
-                        <footer>
-                            <small>❤<?php echo $post['like_number'] ?></small>
-                            <a href="tags.php?tag_id=<?php echo $tag['id']?>">#<?php echo $tag['label'] ?></a>,
-                        </footer>
-                    </article>
+                <?php require("post.php")?>
+
                 <?php } ?>
 
 

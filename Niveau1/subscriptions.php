@@ -53,16 +53,15 @@ include 'header.php'
                 }
                
                 
-                while ($tag = $lesInformations->fetch_assoc())
+                while ($sub = $lesInformations->fetch_assoc())
                 {
                     
                     ?>
 
                    <article>
                     <img src="user.jpg" alt="blason"/>
-                    <h3><strong><?php echo $tag['alias'] ?></strong></h3>
-                    <p><?php echo $tag['email'] ?></p> 
-                    <p><?php echo $tag['id'] ?></p>                   
+                    <h3><a href="wall.php?user_id=<?php echo $sub["id"] ?>"><?php echo $sub["alias"] ?></a></h3>
+                    <p><?php echo $sub['email'] ?></p> 
                 </article>
                 <?php } ?>
                 

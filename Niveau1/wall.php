@@ -141,25 +141,25 @@ include 'header.php'
             /**
              * Etape 3: récupérer tous les messages de l'utilisatrice
              */
-            $laQuestionEnSql = "
-                    SELECT posts.content, 
-                    posts.created, 
-                    users.alias as author_name, 
-                    COUNT(likes.id) as like_number,
-                    GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
-                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist  
-                    FROM posts
-                    JOIN users ON  users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE posts.user_id='$userId' 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    ";
+            $laQuestionEnSql = "SELECT posts.content,
+            posts.created,
+            users.alias as author_name,
+            users.id as author_id,
+            COUNT(likes.id) as like_number,
+            GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
+            GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist
+        FROM posts
+        JOIN users ON users.id=posts.user_id
+        LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
+        LEFT JOIN tags ON posts_tags.tag_id  = tags.id
+        LEFT JOIN likes ON likes.post_id  = posts.id
+        WHERE posts.user_id='$userId' 
+        GROUP BY posts.id
+        ORDER BY posts.created DESC;
+        ";
                     $lesInformations = $mysqli->query($laQuestionEnSql);
                     if (!$lesInformations) {
-                echo ("Échec de la requete : " . $mysqli->error);
+                echo ("Échec de la requete : " . $mysqli-> error);
             }
 
             /**
@@ -168,28 +168,9 @@ include 'header.php'
             while ($post = $lesInformations->fetch_assoc()) {
 
                 // echo "<pre>" . print_r($post, 1) . "</pre>";
-                ?> 
-                <article>
-                    <h3>
-                        <time><?php echo $post['created']?></time>
-                    </h3>
-                    <address>par
-                        <?php echo $post["author_name"] ?>
-                    </address>
-                    <div>
-                        <p>
-                            <?php echo $post["content"] ?>
-                        </p>
-                    </div>
-                    <footer>
-                        <small>♥
-                            <?php echo $post["like_number"] ?>
-                        </small>
+                ?>
+            <?php require("post.php")?>
 
-                        <?php require("tags_management.php")?>
-
-                    </footer>
-                </article>
             <?php } ?>
         </main>
     </div>            

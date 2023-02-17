@@ -15,7 +15,10 @@ include 'header.php'
 <body>
     <div id="wrapper">
         <?php
+        // On récupère l'id de l'utilisateur à qui appartient le mur
         $userId = intval($_GET['user_id']);
+        // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
+        $currentUserId = intval($_SESSION['user_id']);
         ?>
 
         <aside>
@@ -35,24 +38,65 @@ include 'header.php'
                     (n°
                     <?php echo $userId ?>)
                 </p>
-                <p id="subscribe">
-                    <form method="POST" action="wall.php?user_id= <?php echo $userId ?>">
-                     <input type="hidden" name="user_id" value="<?php echo $userId ?>">
-                     <button type="submit" onclick="subscribe()">S'abonner à <?php echo $user["alias"] ?></button>
-                    </form>
-                        <script>
-                            function subscribe() {
-                                var subscribeDiv = document.getElementById("subscribe");
-                                subscribeDiv.innerHTML = "Vous êtes abonné(e) à <?php echo $user["alias"] ?>";
-                                if (subscribeDiv) {
-                                document.getElementById("abonner-bouton").style.display = "none";
-                                }
-                            }
-                            console.log(subscribe())
-                        </script>
-                </p>
-            </section>
+               
+            
+        
+                <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+                    $sql = "INSERT INTO followers (following_user_id, followed_user_id)
+                            SELECT * FROM (SELECT '2', '3') AS tmp
+                                WHERE NOT EXISTS (
+                            SELECT * FROM followers WHERE following_user_id = '2' AND followed_user_id = '3'
+                                ) LIMIT 1";
 
+                    if(isset($_POST['subscribe']))
+                    {
+                        $result = $mysqli->query($sql);
+                        echo "Vous êtes abonné(e) à " . $user["alias"];
+                        //Vérifie si la requête SQL a réussi
+                        if (!$result) {
+                        //Si la requête a échoué, affiche un message d'erreur
+                        echo "<br>";
+                        echo "Erreur lors de l'ajout de l'utilisateur comme follower: " . $mysqli->error;
+                         } else {
+                        //Si la requête a réussi, affiche un message de confirmation
+                        echo "<br>";
+                        echo "L'utilisateur a été ajouté comme follower.";
+                        } ;
+                    } 
+                    ?> 
+                     
+                    <p id="subscribe">
+                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                            <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
+                        </form>
+                    </p>
+                        
+                    <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+                    $sql = "DELETE FROM followers WHERE following_user_id = '2' AND followed_user_id = '3'";
+                    if(isset($_POST['unsubscribe']))
+                    {
+                        $result = $mysqli->query($sql);
+                        echo "Vous êtes désabonné(e) à " . $user["alias"];
+                        //Vérifie si la requête SQL a réussi
+                        if (!$result) {
+                        //Si la requête a échoué, affiche un message d'erreur
+                        echo "<br>";
+                        echo "Erreur lors de la suppression de l'utilisateur comme follower: " . $mysqli->error;
+                         } else {
+                        //Si la requête a réussi, affiche un message de confirmation
+                        echo "<br>";
+                        echo "L'utilisateur a été retiré comme follower.";
+                        } ;
+                    } ;        
+                    ?> 
+                    <p id="unsubscribe">
+                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                            <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
+                        </form>
+                    </p>                 
+
+                             <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton --> 
+            </section>
             <section>
                 <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
                     <dl>
@@ -124,7 +168,7 @@ include 'header.php'
             while ($post = $lesInformations->fetch_assoc()) {
 
                 // echo "<pre>" . print_r($post, 1) . "</pre>";
-                ?>
+                ?> 
                 <article>
                     <h3>
                         <time><?php echo $post['created']?></time>

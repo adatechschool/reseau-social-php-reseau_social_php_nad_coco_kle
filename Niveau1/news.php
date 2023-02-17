@@ -48,19 +48,21 @@ include 'header.php';
             // cette requete vous est donnée, elle est complexe mais correcte, 
             // si vous ne la comprenez pas c'est normal, passez, on y reviendra
             $laQuestionEnSql = "SELECT posts.content,
-                posts.created,
-                users.alias as author_name,  
-                count(likes.id) as like_number,  
-                GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
-                GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist
-                FROM posts
-                JOIN users ON  users.id=posts.user_id
-                LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                LEFT JOIN likes      ON likes.post_id  = posts.id 
-                GROUP BY posts.id
-                ORDER BY posts.created DESC  
-                LIMIT 5
+            posts.created,
+            users.alias as author_name,
+            users.id as author_id,
+            count(likes.id) as like_number,
+            GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
+            GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist
+        FROM posts
+        JOIN users ON users.id=posts.user_id
+        LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
+        LEFT JOIN tags ON posts_tags.tag_id  = tags.id
+        LEFT JOIN likes ON likes.post_id  = posts.id
+        GROUP BY posts.id
+        ORDER BY posts.created DESC
+        LIMIT 5;
+        
                     "; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
             
             $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -76,32 +78,8 @@ include 'header.php';
             // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
             while ($post = $lesInformations->fetch_assoc()) {
                 ?>
+            <?php require("post.php")?>
 
-                <article>
-                    <h3>
-                        <time>
-                            <?php echo $post['author_name'] ?>
-                        </time>
-                    </h3>
-                    <address>
-                        <?php echo $post['created'] ?>
-                    </address>
-                    <div>
-                        <p>
-                            <?php echo $post['content'] ?>
-                        </p>
-                    </div>
-                    <footer>
-                        <small>❤
-                            <?php echo $post['like_number'] ?>
-                        </small>
-
-                        <!-- Manque le lien vers le bon ID sur la ligne en dessous -->
-
-                        <?php require("tags_management.php")?>
-
-                    </footer>
-                </article>
             <?php
                 // avec le <?php ci-dessus on retourne en mode php 
             } // cette accolade ferme et termine la boucle while ouverte avant.

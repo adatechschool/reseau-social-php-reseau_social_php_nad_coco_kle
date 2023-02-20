@@ -32,7 +32,7 @@ include '../assets/header.php'
             <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
 
             <section>
-                <h3>Présentation</h3>
+                <h3>Présentation</h3>   
                 <p>Sur cette page vous trouverez tous les messages de l'utilisatrice :
                     <?php echo $user["alias"] ?>
                     (n°
@@ -43,11 +43,11 @@ include '../assets/header.php'
         
                 <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
                     $sql = "INSERT INTO followers (following_user_id, followed_user_id)
-                    SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
-                        WHERE NOT EXISTS (
-                    SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'
-                        ) LIMIT 1";
-
+                            SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
+                            WHERE NOT EXISTS (
+                            SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'
+                            ) LIMIT 1";
+                    
                     if(isset($_POST['subscribe']))
                     {
                         $result = $mysqli->query($sql);
@@ -64,13 +64,7 @@ include '../assets/header.php'
                         } ;
                     } 
                     ?> 
-                     
-                    <p id="subscribe">
-                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
-                            <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
-                        </form>
-                    </p>
-                        
+                                           
                     <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
                     $sql = "DELETE FROM followers WHERE following_user_id = $currentUserId AND followed_user_id = $userId";
                     if(isset($_POST['unsubscribe']))
@@ -89,11 +83,27 @@ include '../assets/header.php'
                         } ;
                     } ;        
                     ?> 
+                    <?php 
+                    $isfollowed = "SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'";
+                    $result_followed = $mysqli->query($isfollowed);
+                    $checkfollow = $result_followed->fetch_assoc();
+                    print_r ($checkfollow);
+                    ?>
+                       <?php if (isset($_SESSION['connected_id']) AND ($currentUserId != $userId)) { ?>
+                        <p id="subscribe">
+                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                            <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
+                        </form>
+                    </p> 
+                    <?php  } elseif (isset($_SESSION['connected_id']) AND ($currentUserId != $userId) AND (isset($checkfollow))) { ?>
                     <p id="unsubscribe">
                         <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
                             <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
                         </form>
-                    </p>                 
+                    </p>
+                    <?php 
+                    }
+                    ?>                
 
                              <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton --> 
             </section>

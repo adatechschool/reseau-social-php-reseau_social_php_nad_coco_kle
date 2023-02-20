@@ -1,11 +1,11 @@
 <section>
 <form method="post" action="../pages/wall.php?user_id= <?php echo $userId ?>">
-                    <dl>
-                        <dt><label for='postToSend'>Ecrivez ici</label></dt>
-                        <dd><input type='text' name='postToSend'></dd>
-                    </dl>
-                    <input type='submit'>
-                </form>
+    <dl>
+        <dt><label for='postToSend'>Ecrivez ici</label></dt>
+        <dd><input type='text' name='postToSend'></dd>
+    </dl>
+    <input type='submit'>
+</form>
 </section>
 
 <?php

@@ -14,10 +14,14 @@
     </div>
     <footer>
         <small>❤
+            <form method="post" action=""></form>
             <?php echo $post['like_number'] ?>
         </small>
 
-        <?php require("tags_management.php") ?>
+        <?php
+        require("tags_management.php");
+        require("likes_managements.php");
+        ?>
 
     </footer>
 </article>

@@ -1,0 +1,12 @@
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $new_like = $_POST['post.php'];
+    $lInstructionSql = "INSERT INTO likes 
+                        (id, user_id, post_id)
+                        VALUES 
+                        ($likes +1)";
+    $mysqli->query($lInstructionSql);
+}
+
+?>

@@ -19,6 +19,7 @@ include '../assets/blank_header.php';
                 <article>
                     <h2>Connexion</h2>
                     <?php
+
                     /**
                      * TRAITEMENT DU FORMULAIRE
                      */

@@ -1,21 +1,19 @@
 <?php
 include "../connect.env";
 
-$authorId = $_POST['user_id'];
-$postId = $_POST['postId'];
-echo $postId . ", " . $authorId;
+
+$authorId = isset ($_GET['user_id']) ? $_GET['user_id']:0;
+$postId = isset ($_GET['postId']) ? $_GET['postId']:0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $new_like = $_POST['post.php'];
-    $lInstructionSql = "INSERT INTO likes 
-                        (user_id, post_id)
-                        VALUES 
-                        ($authorId, $postId)";
+
+    $lInstructionSql = "INSERT INTO likes (post_id, user_id)
+                        VALUES ($postId, $authorId)";
     $ok = $mysqli->query($lInstructionSql);
     if (!$ok){
-        echo ("erreur de like" . $mysqli->error);
-    } else { echo ("tada");
-    }
+        echo ("erreur" . $mysqli->error);
+    } else { echo ("tada!")
+        ;}
 }
 
 // for ($i=0; $i<likes.length; $i++) {

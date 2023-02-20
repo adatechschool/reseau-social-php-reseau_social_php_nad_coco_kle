@@ -14,7 +14,7 @@
     </div>
     <footer>
         <small>❤
-            <form method="post" action="../assets/likes_management.php">
+            <form method="post" action="../assets/likes_management.php?userid=<?php $_POST['user_id']?>?postid=<?php $_POST['postId'] ?>">
                 <input type="submit" name="postId" value="<?php echo $post['id']?>">
             </form>
             <?php echo $post['like_number'];

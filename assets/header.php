@@ -11,7 +11,6 @@
         <nav id="user">
             <a href="#">Profil</a>
             <ul>
-                <li><a href="../pages/login.php">Se connecter</a></li>
                 <li><a href="../pages/settings.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Paramètres</a></li>
                 <li><a href="../pages/followers.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mes suiveurs</a></li>
                 <li><a href="../pages/subscriptions.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mes abonnements</a></li>

@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $lInstructionSql = "INSERT INTO likes 
                         (id, user_id, post_id)
                         VALUES 
-                        ($likes +1)";
+                        (likes['id']+1, likes['number']+1)";
     $mysqli->query($lInstructionSql);
 }
 

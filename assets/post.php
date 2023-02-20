@@ -14,13 +14,15 @@
     </div>
     <footer>
         <small>❤
-            <form method="post" action=""></form>
-            <?php echo $post['like_number'] ?>
+            <form method="post" action="../assets/likes_management.php">
+                <input type="submit" name="postId" value="<?php echo $post['id']?>">
+            </form>
+            <?php echo $post['like_number'];
+            require("assets/likes_management.php"); ?>
         </small>
 
         <?php
         require("tags_management.php");
-        require("likes_managements.php");
         ?>
 
     </footer>

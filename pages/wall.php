@@ -109,6 +109,7 @@ include '../assets/header.php'
              */
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
+            posts.id,
             users.alias as author_name,
             users.id as author_id,
             COUNT(likes.id) as like_number,

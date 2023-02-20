@@ -111,6 +111,15 @@ include '../assets/header.php';
 
                 <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton -->
             </section>
+            <section>
+                <form method="post" action="../pages/wall.php?user_id= <?php echo $userId ?>">
+                    <dl>
+                        <dt><label for='postToSend'>Ecrivez ici</label></dt>
+                        <dd><input type='text' name='postToSend'></dd>
+                    </dl>
+                    <input type='submit'>
+                </form>
+</section>
             <?php require("../assets/write_a_post.php") ?>
 
 
@@ -127,16 +136,16 @@ include '../assets/header.php';
             users.id as author_id,
             COUNT(likes.id) as like_number,
             GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.label) AS taglist,
-                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
-        FROM posts
-        JOIN users ON users.id=posts.user_id
-        LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
-        LEFT JOIN tags ON posts_tags.tag_id  = tags.id
-        LEFT JOIN likes ON likes.post_id  = posts.id
-        WHERE posts.user_id='$userId' 
-        GROUP BY posts.id
-        ORDER BY posts.created DESC;
-        ";
+            GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
+            FROM posts
+            JOIN users ON users.id=posts.user_id
+            LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
+            LEFT JOIN tags ON posts_tags.tag_id  = tags.id
+            LEFT JOIN likes ON likes.post_id  = posts.id
+            WHERE posts.user_id='$userId' 
+            GROUP BY posts.id
+            ORDER BY posts.created DESC;
+            ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli->error);
@@ -149,7 +158,9 @@ include '../assets/header.php';
 
                 // echo "<pre>" . print_r($post, 1) . "</pre>";
                 ?>
-                <?php require("../assets/post.php") ?>
+                <?php require("../assets/post.php")
+                ?>
+                
 
             <?php } ?>
         </main>

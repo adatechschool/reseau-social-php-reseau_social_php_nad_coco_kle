@@ -1,5 +1,4 @@
 <?php
-session_start();
 ?>
 <header>
     <a href='../pages/admin.php'><img src="../img/resoc.jpg" alt="Logo de notre réseau social"/></a>

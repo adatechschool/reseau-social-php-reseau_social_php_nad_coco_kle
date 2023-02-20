@@ -2,7 +2,7 @@
 include '../assets/notConnected.php';
 /**
  * Réinitialiser les variables de la superglobale $_SESSION à zéro
- */session_start();
+ */
     if ( isset($_SESSION['connected_id']) ) {
         unset($_SESSION['connected_id']);
     }   

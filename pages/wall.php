@@ -84,24 +84,28 @@ include '../assets/header.php'
                     } ;        
                     ?> 
                     <?php 
+                    if (isset($_SESSION['connected_id']) AND ($currentUserId != $userId)){
                     $isfollowed = "SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'";
                     $result_followed = $mysqli->query($isfollowed);
                     $checkfollow = $result_followed->fetch_assoc();
                     print_r ($checkfollow);
                     ?>
-                       <?php if (isset($_SESSION['connected_id']) AND ($currentUserId != $userId)) { ?>
+                       <?php if(!$checkfollow)  { ?>
                         <p id="subscribe">
                         <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
                             <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
                         </form>
                     </p> 
-                    <?php  } elseif (isset($_SESSION['connected_id']) AND ($currentUserId != $userId) AND (isset($checkfollow))) { ?>
+                    <?php  } elseif ($checkfollow) { ?>
                     <p id="unsubscribe">
                         <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
                             <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
                         </form>
                     </p>
                     <?php 
+                        }else{
+                            echo 'nik';
+                        }
                     }
                     ?>                
 

@@ -12,26 +12,59 @@
 
 // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Etape 2: récupérer ce qu'il y a dans le formulaire 
     $new_post = $_POST['postToSend'];
-    //Etape 4 : Petite sécurité
+    // Step 4: Sanitize the input
     $new_post = $mysqli->real_escape_string($new_post);
-    //Etape 5 : construction de la requete
+    
+    preg_match_all("/#\w+/", $new_post, $post_tags);
+    
+    // Step 5: Insert the post into the database
     $lInstructionSql = "INSERT INTO posts 
                         (id, user_id, content, created, parent_id)
                         VALUES 
                         (NULL, '$userId', '$new_post', NOW(), NULL)";
-    // Etape 6: exécution de la requete
     $ok = $mysqli->query($lInstructionSql);
-
-    if (!$ok) {
-        echo "Le post a échouée : " . $mysqli->error;
+    $post_id = $mysqli->insert_id;
+    
+    // Step 6: Insert the tags into the database
+    if ($ok && !empty($post_tags[0])) {
+      $tag_ids = array();
+      foreach ($post_tags[0] as $post_tag) {
+        $post_tag = substr($post_tag, 1);
+        // Check if the tag already exists in the tags table
+        $lInstructionSql = "SELECT id FROM tags WHERE label = '$post_tag' ORDER BY label ASC";
+        $result = $mysqli->query($lInstructionSql);
+        if ($result->num_rows > 0) {
+          // Tag already exists, retrieve the tag_id
+          $row = $result->fetch_assoc();
+          $tag_id = $row['id'];
+        } else {
+          // Tag does not exist, insert it into the tags table
+          $lInstructionSql = "INSERT INTO tags (label) VALUES ('$post_tag')";
+          $ok = $mysqli->query($lInstructionSql);
+          $tag_id = $mysqli->insert_id;
+        }
+        if (!$ok) {
+          break;
+        }
+        $tag_ids[] = $tag_id;
+      }
+      if ($ok) {
+        foreach ($tag_ids as $tag_id) {
+          $lInstructionSql = "INSERT INTO posts_tags (post_id, tag_id) VALUES ($post_id, $tag_id)";
+          $ok = $mysqli->query($lInstructionSql);
+          if (!$ok) {
+            break;
+          }
+        }
+      }
+    }
+    
+    if ($ok) {
+      echo "Le post a été ajouté avec succès.";
+      header("Location: {$_SERVER['REQUEST_URI']}");
+      exit();
     } else {
-        // Step 2 of Post/Redirect/Get pattern: send HTTP redirect response
-        //it redirect the user to the page state where the form was not send, or a thanks page
-        header("Location: {$_SERVER['REQUEST_URI']}");
-        exit();
+      echo "Le post a échoué : " . $mysqli->error;
     }
 }
-
-?>

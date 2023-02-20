@@ -2,7 +2,7 @@
 include '../assets/notConnected.php';
 include '../connect.env';
 include '../assets/header.php';
-    ?>
+?>
 <!doctype html>
 <html lang="fr">
 
@@ -39,66 +39,67 @@ include '../assets/header.php';
                     (n°
                     <?php echo $userId ?>)
                 </p>
-               
-            
-        
+
+
+
                 <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
-                    $sql = "INSERT INTO followers (following_user_id, followed_user_id)
+                $sql = "INSERT INTO followers (following_user_id, followed_user_id)
                     SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
                         WHERE NOT EXISTS (
                     SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'
                         ) LIMIT 1";
 
-                    if(isset($_POST['subscribe']))
-                    {
-                        $result = $mysqli->query($sql);
-                        echo "Vous êtes abonné(e) à " . $user["alias"];
-                        //Vérifie si la requête SQL a réussi
-                        if (!$result) {
+                if (isset($_POST['subscribe'])) {
+                    $result = $mysqli->query($sql);
+                    echo "Vous êtes abonné(e) à " . $user["alias"];
+                    //Vérifie si la requête SQL a réussi
+                    if (!$result) {
                         //Si la requête a échoué, affiche un message d'erreur
                         echo "<br>";
                         echo "Erreur lors de l'ajout de l'utilisateur comme follower: " . $mysqli->error;
-                         } else {
+                    } else {
                         //Si la requête a réussi, affiche un message de confirmation
                         echo "<br>";
                         echo "L'utilisateur a été ajouté comme follower.";
-                        } ;
-                    } 
-                    ?> 
-                     
-                    <p id="subscribe">
-                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
-                            <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
-                        </form>
-                    </p>
-                        
-                    <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
-                    $sql = "DELETE FROM followers WHERE following_user_id = $currentUserId AND followed_user_id = $userId";
-                    if(isset($_POST['unsubscribe']))
-                    {
-                        $result = $mysqli->query($sql);
-                        echo "Vous êtes désabonné(e) à " . $user["alias"];
-                        //Vérifie si la requête SQL a réussi
-                        if (!$result) {
+                    }
+                    ;
+                }
+                ?>
+
+                <p id="subscribe">
+                <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                    <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
+                </form>
+                </p>
+
+                <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+                $sql = "DELETE FROM followers WHERE following_user_id = $currentUserId AND followed_user_id = $userId";
+                if (isset($_POST['unsubscribe'])) {
+                    $result = $mysqli->query($sql);
+                    echo "Vous êtes désabonné(e) à " . $user["alias"];
+                    //Vérifie si la requête SQL a réussi
+                    if (!$result) {
                         //Si la requête a échoué, affiche un message d'erreur
                         echo "<br>";
                         echo "Erreur lors de la suppression de l'utilisateur comme follower: " . $mysqli->error;
-                         } else {
+                    } else {
                         //Si la requête a réussi, affiche un message de confirmation
                         echo "<br>";
                         echo "L'utilisateur a été retiré comme follower.";
-                        } ;
-                    } ;        
-                    ?> 
-                    <p id="unsubscribe">
-                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
-                            <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
-                        </form>
-                    </p>                 
+                    }
+                    ;
+                }
+                ;
+                ?>
+                <p id="unsubscribe">
+                <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                    <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
+                </form>
+                </p>
 
-                             <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton --> 
+                <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton -->
             </section>
-            <?php require("../assets/write_a_post.php")?>
+            <?php require("../assets/write_a_post.php") ?>
 
 
         </aside>
@@ -113,8 +114,8 @@ include '../assets/header.php';
             users.alias as author_name,
             users.id as author_id,
             COUNT(likes.id) as like_number,
-            GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
-            GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist
+            GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.label) AS taglist,
+                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
         FROM posts
         JOIN users ON users.id=posts.user_id
         LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
@@ -124,9 +125,9 @@ include '../assets/header.php';
         GROUP BY posts.id
         ORDER BY posts.created DESC;
         ";
-                    $lesInformations = $mysqli->query($laQuestionEnSql);
-                    if (!$lesInformations) {
-                echo ("Échec de la requete : " . $mysqli-> error);
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
             }
 
             /**
@@ -136,10 +137,11 @@ include '../assets/header.php';
 
                 // echo "<pre>" . print_r($post, 1) . "</pre>";
                 ?>
-            <?php require("../assets/post.php")?>
+                <?php require("../assets/post.php") ?>
 
             <?php } ?>
         </main>
-    </div>            
+    </div>
 </body>
+
 </html>

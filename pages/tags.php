@@ -56,8 +56,8 @@ include '../assets/header.php'
                     users.alias as author_name,
                     users.id as author_id,  
                     count(likes.id) as like_number,  
-                    GROUP_CONCAT(DISTINCT tags.label) AS taglist,
-                    GROUP_CONCAT(DISTINCT tags.id) AS tagidlist 
+                    GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.label) AS taglist,
+                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
                     FROM posts_tags as filter 
                     JOIN posts ON posts.id=filter.post_id
                     JOIN users ON users.id=posts.user_id

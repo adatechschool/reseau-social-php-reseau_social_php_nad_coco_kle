@@ -48,8 +48,8 @@ include '../assets/header.php';
                 users.alias as author_name,
                 users.id as author_id,
                 count(likes.id) as like_number,
-                GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
-                GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist
+                GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.label) AS taglist,
+                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
             FROM followers
             JOIN users ON users.id=followers.followed_user_id
             JOIN posts ON posts.user_id=users.id

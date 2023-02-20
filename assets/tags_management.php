@@ -18,8 +18,8 @@ if (!isset($post['tagidlist'])) {
 
 while ($explodeTag) {
 
-    $curentTag = array_pop($explodeTag);
-    $curentTagId = array_pop($explodeTagId);
+    $curentTag = array_shift($explodeTag);
+    $curentTagId = array_shift($explodeTagId);
     ?>
 
     <a href="../pages/tags.php?tag_id=<?php echo $curentTagId ?>"><?php echo $hastag, $curentTag ?></a>

@@ -1,6 +1,6 @@
 <?php
 include '../connect.env'; 
-include 'assets\header.php'
+include '../assets/blank_header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -19,6 +19,10 @@ include 'assets\header.php'
             </aside>
             <main>
                 <article>
+                    <?if($_GET['msg']){
+                    echo $_GET['msg'];
+                    }
+                    ?>
                     <h2>Inscription</h2>
                     <?php
                     /**

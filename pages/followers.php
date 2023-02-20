@@ -1,4 +1,5 @@
 <?php
+include '../assets/notConnected.php';
 include '../connect.env';
 include '../assets/header.php'
     ?>

@@ -1,4 +1,5 @@
 <?php
+include '../assets/notConnected.php';
 include '../connect.env'; 
 include '../assets/header.php';
 ?>
@@ -9,6 +10,7 @@ include '../assets/header.php';
         <title>ReSoC - Flux</title>         
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="../style.css"/>
+
     </head>
     <body>
         <div id="wrapper">

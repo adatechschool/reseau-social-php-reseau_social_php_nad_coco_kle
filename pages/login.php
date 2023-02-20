@@ -1,5 +1,5 @@
 <?php
-include '../assets/header.php';
+include '../assets/blank_header.php';
 ?>
 <!doctype html>
 <html lang="fr">

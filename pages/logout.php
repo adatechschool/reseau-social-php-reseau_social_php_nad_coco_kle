@@ -1,4 +1,5 @@
 <?php 
+include '../assets/notConnected.php';
 /**
  * Réinitialiser les variables de la superglobale $_SESSION à zéro
  */session_start();

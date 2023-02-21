@@ -1,5 +1,8 @@
 body{
-    background: radial-gradient(rgb(106, 101, 101), rgb(0, 0, 0)); 
+    background-size: cover;
+    background-image: url(img/Road.jpg);
+    background-size: 100%;
+    background-position: center center;; 
     font-family: Arial;
 }
 
@@ -160,6 +163,8 @@ pre{
    min-width: 800px;
 }
 
-#submit {
-    background-color : aqua;
+.error_user {
+    margin-left: 40em;
+    margin-right: 41em;
+    background-color: crimson;
 }

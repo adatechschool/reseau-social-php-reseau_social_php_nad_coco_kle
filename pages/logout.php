@@ -5,6 +5,7 @@ include '../assets/notConnected.php';
  */
     if ( isset($_SESSION['connected_id']) ) {
         unset($_SESSION['connected_id']);
+        unset($_SESSION['user_alias']);
     }   
 ?>
 

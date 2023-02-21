@@ -5,7 +5,8 @@
         </time>
     </h3>
     <address>
-        <?php echo $post['created'] ?>
+        <?php echo $post['created'] ;?>
+        
     </address>
     <div>
         <p>
@@ -16,7 +17,11 @@
         <small>❤
             <?php echo $post['like_number'] ?>
         </small>
-        <?php echo $post['id']; ?>
+
+        <?php require("write_a_post.php") ?>
+
+
+
         <?php require("tags_management.php") ?>
 
     </footer>

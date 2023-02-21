@@ -32,13 +32,13 @@ include '../assets/header.php'
             // Etape 1: récupérer l'id de l'utilisateur
             $userId = intval($_GET['user_id']);
             // Etape 3: récupérer le nom de l'utilisateur
-            $laQuestionEnSql = "
-                    SELECT users.*
-                    FROM followers
-                    LEFT JOIN users ON users.id=followers.followed_user_id
-                    WHERE followers.following_user_id='$userId'
-                    GROUP BY users.id
-                    ";
+            $laQuestionEnSql ="
+            SELECT users.* 
+            FROM followers 
+            LEFT JOIN users ON users.id=followers.following_user_id 
+            WHERE followers.followed_user_id='$userId'
+            GROUP BY users.id
+            " ;
             $lesInformations = $mysqli->query($laQuestionEnSql);
             // Etape 4: à vous de jouer
             //echo "<pre>" . print_r($user, 1) . "</pre>";

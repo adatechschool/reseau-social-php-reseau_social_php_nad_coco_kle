@@ -42,12 +42,6 @@ if (isset($_POST['postId']) AND isset($_POST['currentUserId'])) {
     } else { echo ("Merci de répandre l'amour <3")
         ;}
 }
-
-echo "this is l'user connecté: " . $currentUserId;
-echo "<br>";
-echo "this is the post: " . $postId;
-echo "<br>";
-
 ?>
 
 <meta http-equiv="refresh" />

@@ -11,7 +11,7 @@
 <?php
 
 // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST['postToSend'])) {
     
     $new_post = $_POST['postToSend'];
     // Step 4: Sanitize the input

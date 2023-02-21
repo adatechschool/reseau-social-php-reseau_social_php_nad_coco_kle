@@ -18,7 +18,7 @@ include '../assets/header.php';
         <?php
         // On récupère l'id de l'utilisateur à qui appartient le mur
         $userId = intval($_GET['user_id']);
-        // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
+        //on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
         $currentUserId = isset($_SESSION['connected_id']) ? intval($_SESSION['connected_id']) : 0; // fixed notice and added isset()
         ?>
 
@@ -108,8 +108,6 @@ include '../assets/header.php';
                         }
                     }
                     ?>                
-
-                
             </section>
         </aside>
 

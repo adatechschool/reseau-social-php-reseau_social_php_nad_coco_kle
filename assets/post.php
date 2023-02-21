@@ -1,8 +1,6 @@
 <?php
-    echo "fichier post chargé";
     include "../connect.env";
     session_start();
-
 ?>
 
 <article>

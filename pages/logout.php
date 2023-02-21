@@ -1,13 +1,9 @@
 <?php 
-echo "fichier logout chargé";
-/**
- * Réinitialiser les variables de la superglobale $_SESSION à zéro
- */session_start();
+session_start();
     if ( isset($_SESSION['connected_id']) ) {
         unset($_SESSION['connected_id']);
     }   
 ?>
-
 <!-- Renvoyer vers le formulaire de connexion de la page login -->
 <html>
 <meta http-equiv="refresh" content="1; url=login.php" />

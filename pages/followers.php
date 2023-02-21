@@ -1,7 +1,6 @@
 <?php
-echo "fichier followers chargé";
-include '../connect.env';
-include '../assets/header.php'
+    include '../connect.env';
+    include '../assets/header.php'
     ?>
 <!doctype html>
 <html lang="fr">
@@ -55,5 +54,4 @@ include '../assets/header.php'
         </main>
     </div>
 </body>
-
 </html>

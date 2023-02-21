@@ -1,4 +1,3 @@
-<?php echo "fichier write_a_post chargé";?>
 <section>
 <form method="post" action="../pages/wall.php?user_id= <?php echo $userId ?>">
     <dl>

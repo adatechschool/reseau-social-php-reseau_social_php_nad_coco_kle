@@ -1,8 +1,7 @@
 <?php
-echo "fichier news chargé";
-include '../connect.env';
-include '../assets/header.php';
-    ?>
+    include '../connect.env';
+    include '../assets/header.php';
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -32,9 +31,6 @@ include '../assets/header.php';
                     exit();
                 }
 
-            // Etape 2: Poser une question à la base de donnée et récupérer ses informations
-            // cette requete vous est donnée, elle est complexe mais correcte, 
-            // si vous ne la comprenez pas c'est normal, passez, on y reviendra
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
             posts.id,
@@ -50,9 +46,7 @@ include '../assets/header.php';
         LEFT JOIN likes ON likes.post_id  = posts.id
         GROUP BY posts.id
         ORDER BY posts.created DESC
-        LIMIT 5;
-        
-                    "; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
+        LIMIT 5"; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
             
             $lesInformations = $mysqli->query($laQuestionEnSql);
             // Vérification
@@ -71,8 +65,7 @@ include '../assets/header.php';
             <?php require("../assets/post.php")?>
 
             <?php
-                // avec le <?php ci-dessus on retourne en mode php 
-            } // cette accolade ferme et termine la boucle while ouverte avant.
+            }
             ?>
 
         </main>

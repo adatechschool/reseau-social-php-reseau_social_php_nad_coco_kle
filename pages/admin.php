@@ -1,7 +1,6 @@
 <?php
-echo "fichier admin chargé";
-include '../connect.env'; 
-include '../assets/header.php'
+    include '../connect.env'; 
+    include '../assets/header.php'
 ?>
 
 <!doctype html>
@@ -17,9 +16,7 @@ include '../assets/header.php'
             <aside>
                 <h2>Mots-clés</h2>
                 <?php
-                /*
-                 * Etape 2 : trouver tous les mots clés
-                 */
+                //Trouver tous les mots clé 
                 $laQuestionEnSql = "SELECT * FROM `tags` LIMIT 50";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 // Vérification
@@ -29,7 +26,6 @@ include '../assets/header.php'
                     exit();
                 }
                
-                
                 while ($tag = $lesInformations->fetch_assoc())
                 {
                     
@@ -46,23 +42,16 @@ include '../assets/header.php'
             <main>
                 <h2>Utilisatrices</h2>
                 <?php
-                /*
-                 * Etape 4 : trouver tous les mots clés
-                 * PS: on note que la connexion $mysqli à la base a été faite, pas besoin de la refaire.
-                 */
+
                 $laQuestionEnSql = "SELECT * FROM `users` LIMIT 50";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
-                // Vérification
+
                 if ( ! $lesInformations)
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                     exit();
                 }
 
-                /*
-                 * Etape 5 : @todo : Afficher les utilisatrices en s'inspirant de ce qui a été fait dans news.php
-                 * Attention à en pas oublier de modifier dans le lien les "user_id=123" avec l'id de l'utilisatrice
-                 */
                 while ($tag = $lesInformations->fetch_assoc())
                 {
                     ?>

@@ -1,4 +1,5 @@
 <?php
+echo "fichier tags_management chargé";
 $hastag = "#";
 
 if (!isset($post['tagidlist'])) {

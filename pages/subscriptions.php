@@ -1,6 +1,7 @@
 <?php
+echo "fichier subscriptions chargé";
 include '../connect.env'; 
-include '../assets/header.php'
+include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">

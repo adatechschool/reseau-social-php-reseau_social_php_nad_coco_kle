@@ -1,6 +1,7 @@
 <?php
+echo "fichier tags chargé";
 include '../connect.env'; 
-include '../assets/header.php'
+include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -52,6 +53,7 @@ include '../assets/header.php'
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
+                    posts.id,
                     users.alias as author_name,
                     users.id as author_id,  
                     count(likes.id) as like_number,  

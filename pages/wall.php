@@ -1,6 +1,7 @@
 <?php
+echo "fichier wall chargé";
 include '../connect.env';
-include '../assets/header.php'
+include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -15,9 +16,9 @@ include '../assets/header.php'
 <body>
     <div id="wrapper">
         <?php
-        // On récupère l'id de l'utilisateur à qui appartient le mur
+        // On récupère l'id de l'utilisatrice à qui appartient le mur
         $userId = intval($_GET['user_id']);
-        // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisatrice en cours qui souhaite s'abonner
+        // On récupère l'id de l'utilisatrice en cours qui souhaite s'abonner
         $currentUserId = isset($_SESSION['connected_id']) ? intval($_SESSION['connected_id']) : 0; // fixed notice and added isset()
         ?>
 
@@ -39,7 +40,7 @@ include '../assets/header.php'
                     <?php echo $userId ?>)
                 </p>
         
-                <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+                <?php // Exécute la requête SQL pour ajouter l'utilisatrice courante comme follower de l'utilisatrice dont on visite la page
                     $sql = "INSERT INTO followers (following_user_id, followed_user_id)
                     SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
                         WHERE NOT EXISTS (
@@ -100,9 +101,7 @@ include '../assets/header.php'
 
         <main>
             <?php
-            /**
-            * Récupérer tous les messages de l'utilisatrice
-            */
+            // Récupérer tous les messages de l'utilisatrice
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
             posts.id,
@@ -111,22 +110,24 @@ include '../assets/header.php'
             COUNT(likes.id) as like_number,
             GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.id) AS taglist,
             GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.id) AS tagidlist
-        FROM posts
-        JOIN users ON users.id=posts.user_id
-        LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
-        LEFT JOIN tags ON posts_tags.tag_id  = tags.id
-        LEFT JOIN likes ON likes.post_id  = posts.id
-        WHERE posts.user_id='$userId' 
-        GROUP BY posts.id
-        ORDER BY posts.created DESC;
-        ";
-                    $lesInformations = $mysqli->query($laQuestionEnSql);
-                    if (!$lesInformations) {
+            FROM posts
+            JOIN users ON users.id=posts.user_id
+            LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
+            LEFT JOIN tags ON posts_tags.tag_id  = tags.id
+            LEFT JOIN likes ON likes.post_id  = posts.id
+            WHERE posts.user_id='$userId' 
+            GROUP BY posts.id
+            ORDER BY posts.created DESC;";
+
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            
+            if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli-> error);
             }
             while ($post = $lesInformations->fetch_assoc()) {
                 require("../assets/post.php");
-            } ?>
+            }
+            ?>
         </main>
     </div>            
 </body>

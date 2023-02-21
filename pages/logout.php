@@ -1,4 +1,5 @@
 <?php 
+echo "fichier logout chargé";
 /**
  * Réinitialiser les variables de la superglobale $_SESSION à zéro
  */session_start();

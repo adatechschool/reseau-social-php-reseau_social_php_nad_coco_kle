@@ -1,4 +1,5 @@
 <?php
+echo "fichier news chargé";
 include '../connect.env';
 include '../assets/header.php';
     ?>
@@ -36,6 +37,7 @@ include '../assets/header.php';
             // si vous ne la comprenez pas c'est normal, passez, on y reviendra
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
+            posts.id,
             users.alias as author_name,
             users.id as author_id,
             count(likes.id) as like_number,

@@ -1,4 +1,5 @@
 <?php
+echo "fichier admin chargé";
 include '../connect.env'; 
 include '../assets/header.php'
 ?>

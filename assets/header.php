@@ -1,4 +1,5 @@
 <?php
+echo "fichier header chargé";
 session_start();
 ?>
 <header>
@@ -7,7 +8,7 @@ session_start();
             <a href="../pages/news.php">Actualités</a>
             <a href="../pages/wall.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mur</a>
             <a href="../pages/feed.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Flux</a>
-            <a href="../pages/tags.php?tag_id=1">Mots-clés</a>
+            <a href="../pages/tags.php?tag_id=">Mots-clés</a>
         </nav>
         <nav id="user">
             <a href="#">Profil</a>

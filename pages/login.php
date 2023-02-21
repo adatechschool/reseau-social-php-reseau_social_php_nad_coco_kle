@@ -1,4 +1,5 @@
 <?php
+echo "fichier login chargé";
 include '../assets/header.php';
 ?>
 <!doctype html>

@@ -17,11 +17,6 @@
         <small>❤
             <?php echo $post['like_number'] ?>
         </small>
-
-        <?php require("write_a_post.php") ?>
-
-
-
         <?php require("tags_management.php") ?>
 
     </footer>

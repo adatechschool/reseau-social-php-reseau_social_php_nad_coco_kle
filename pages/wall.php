@@ -109,12 +109,8 @@ include '../assets/header.php';
                     }
                     ?>                
 
-                <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton -->
+                
             </section>
-            
-            <?php require("../assets/write_a_post.php") ?>
-
-
         </aside>
 
         <main>

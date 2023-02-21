@@ -1,7 +1,7 @@
 <?php
-include '../assets/notConnected.php';
-include '../connect.env'; 
-include '../assets/header.php'
+    include '../assets/notConnected.php';
+    include '../connect.env'; 
+    include '../assets/header.php'
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,26 +14,17 @@ include '../assets/header.php'
     <body>
         <div id="wrapper">
             <?php
-            /**
-             * Cette page est similaire à wall.php ou feed.php 
-             * mais elle porte sur les mots-clés (tags)
-             */
-            /**
-             * Etape 1: Le mur concerne un mot-clé en particulier
-             */
+            // Le mur concerne un mot-clé en particulier
             $tagId = intval($_GET['tag_id']);
             ?>
             
             <aside>
                 <?php
-                /**
-                 * Etape 3: récupérer le nom du mot-clé
-                 */
+
+                // Récupérer le nom du mot-clé
                 $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
                 <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -47,12 +38,11 @@ include '../assets/header.php'
             </aside>
             <main>
                 <?php
-                /**
-                 * Etape 3: récupérer tous les messages avec un mot clé donné
-                 */
+                // Récupérer tous les messages avec un mot clé donné
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
+                    posts.id,
                     users.alias as author_name,
                     users.id as author_id,  
                     count(likes.id) as like_number,  
@@ -74,19 +64,11 @@ include '../assets/header.php'
                     echo("Échec de la requete : " . $mysqli->error);
                 }
 
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
+                // Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $lesInformations->fetch_assoc())
                 {
-
-                    
-                    ?>                
-                <?php require("../assets/post.php")?>
-
-                <?php } ?>
-
-
+                    require("../assets/post.php");
+                } ?>
             </main>
         </div>
     </body>

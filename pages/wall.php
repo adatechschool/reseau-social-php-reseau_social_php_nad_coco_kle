@@ -1,7 +1,7 @@
 <?php
-include '../assets/notConnected.php';
-include '../connect.env';
-include '../assets/header.php';
+    include '../assets/notConnected.php';
+    include '../connect.env';
+    include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -16,15 +16,15 @@ include '../assets/header.php';
 <body>
     <div id="wrapper">
         <?php
-        // On récupère l'id de l'utilisateur à qui appartient le mur
+        // On récupère l'id de l'utilisatrice à qui appartient le mur
         $userId = intval($_GET['user_id']);
-        //on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
-        $currentUserId = isset($_SESSION['connected_id']) ? intval($_SESSION['connected_id']) : 0; // fixed notice and added isset()
+        // On récupère l'id de l'utilisatrice en cours qui souhaite s'abonner
+        $currentUserId = isset($_SESSION['connected_id']) ? intval($_SESSION['connected_id']) : 0;
         ?>
 
         <aside>
             <?php
-            /* Etape 3: récupérer le nom de l'utilisateur*/
+            // On récupère l'id utilisatrice
             $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $user = $lesInformations->fetch_assoc();
@@ -39,10 +39,8 @@ include '../assets/header.php';
                     (n°
                     <?php echo $userId ?>)
                 </p>
-
-
-
-                <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+        
+                <?php // Exécute la requête SQL pour ajouter l'utilisatrice courante comme follower de l'utilisatrice dont on visite la page
                     $sql = "INSERT INTO followers (following_user_id, followed_user_id)
                                 SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
                                     WHERE NOT EXISTS (
@@ -64,9 +62,8 @@ include '../assets/header.php';
                         echo "L'utilisateur a été ajouté comme follower.";
                         } ;
                     } 
-                    ?> 
-                                           
-                    <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+
+                    // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
                     $sql = "DELETE FROM followers WHERE following_user_id = $currentUserId AND followed_user_id = $userId";
                     if(isset($_POST['unsubscribe']))
                     {
@@ -83,14 +80,13 @@ include '../assets/header.php';
                         echo "L'utilisateur a été retiré comme follower.";
                         } ;
                     } ;        
-                    ?> 
-                    <?php 
+
                     if (isset($_SESSION['connected_id']) AND ($currentUserId != $userId)){
                     $isfollowed = "SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'";
                     $result_followed = $mysqli->query($isfollowed);
                     $checkfollow = $result_followed->fetch_assoc();
-                    ?>
-                       <?php if(!$checkfollow)  { ?>
+                    
+                    if(!$checkfollow)  { ?>
                         <p id="subscribe">
                         <form method="post" action="wall.php?user_id=<?php echo $userId ?>">
                             <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
@@ -102,22 +98,16 @@ include '../assets/header.php';
                             <input type="submit" name="unsubscribe" value="Se désabonner de <?php echo $user["alias"] ?>">
                         </form>
                     </p>
-                    <?php 
-                        }else{
-                            echo 'nik';
-                        }
-                    }
-                    ?>                
+                    <?php } ?>                
             </section>
         </aside>
 
         <main>
             <?php
-            /**
-             * Etape 3: récupérer tous les messages de l'utilisatrice
-             */
+            // Récupérer tous les messages de l'utilisatrice
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
+            posts.id,
             posts.id,
             users.alias as author_name,
             users.id as author_id,
@@ -133,6 +123,7 @@ include '../assets/header.php';
             GROUP BY posts.id
             ORDER BY posts.created DESC;
             ";
+
             $lesInformations = $mysqli->query($laQuestionEnSql);
             if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli->error);
@@ -141,13 +132,9 @@ include '../assets/header.php';
             require("../assets/write_a_post.php");
             
             while ($post = $lesInformations->fetch_assoc()) {
-                
                 require("../assets/post.php");
-            
-
-             } ?>
+            } ?>
         </main>
     </div>
 </body>
-
 </html>

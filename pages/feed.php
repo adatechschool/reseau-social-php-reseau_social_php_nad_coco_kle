@@ -1,7 +1,7 @@
 <?php
-include '../assets/notConnected.php';
-include '../connect.env'; 
-include '../assets/header.php';
+    include '../assets/notConnected.php';
+    include '../connect.env'; 
+    include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,18 +14,10 @@ include '../assets/header.php';
     </head>
     <body>
         <div id="wrapper">
-            <?php
-            /**
-             * Le mur concerne un utilisateur en particulier
-             */
-            $userId = intval($_GET['user_id']);
-            ?>
+            <?php $userId = intval($_GET['user_id']);?>
             
             <aside>
                 <?php
-                /**
-                 * Récupérer le nom de l'utilisateur
-                 */
                 $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
@@ -40,11 +32,9 @@ include '../assets/header.php';
             </aside>
             <main>
                 <?php
-                /**
-                 * Récupérer tous les messages des abonnements
-                 */
                 $laQuestionEnSql = "SELECT posts.content,
                 posts.created,
+                posts.id,
                 users.alias as author_name,
                 users.id as author_id,
                 count(likes.id) as like_number,
@@ -58,26 +48,17 @@ include '../assets/header.php';
             LEFT JOIN likes ON likes.post_id  = posts.id
             WHERE followers.following_user_id=$userId 
             GROUP BY posts.id
-            ORDER BY posts.created DESC;
-            ";
-         
+            ORDER BY posts.created DESC;";
          
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 if ( ! $lesInformations)
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-
-                /**
-                 * Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
+                
                 while ($post = $lesInformations->fetch_assoc()) {
-                ?>     
-                <?php require("../assets/post.php")?>
-
-                <?php
-                }
-                ?>
+                    require("../assets/post.php");
+                }?>
             </main>
         </div>
     </body>

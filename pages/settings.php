@@ -1,7 +1,7 @@
 <?php
-include '../assets/notConnected.php';
-include '../connect.env'; 
-include '../assets/header.php'
+    include '../assets/notConnected.php';
+    include '../connect.env'; 
+    include '../assets/header.php'
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,7 +14,6 @@ include '../assets/header.php'
     <body>
         <div id="wrapper" class='profile'>
 
-
             <aside>
                 <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -26,12 +25,9 @@ include '../assets/header.php'
             </aside>
             <main>
                 <?php
-                // Add ?user_id=4 at the end of the url
                 $userId = intval($_GET['user_id']);
 
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
+                // Récupérer le nom de l'utilisateur
                 $laQuestionEnSql = "
                     SELECT users.*, 
                     count(DISTINCT posts.id) as totalpost, 
@@ -42,20 +38,15 @@ include '../assets/header.php'
                     LEFT JOIN likes as given ON given.user_id=users.id 
                     LEFT JOIN likes as recieved ON recieved.post_id=posts.id 
                     WHERE users.id = '$userId' 
-                    GROUP BY users.id
-                    ";
+                    GROUP BY users.id";
+
                 $lesInformations = $mysqli->query($laQuestionEnSql);
+
                 if ( ! $lesInformations)
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
                 $user = $lesInformations->fetch_assoc();
-
-                /**
-                 * Etape 4: à vous de jouer
-                 */
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
-                //echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>                
                 <article class='parameters'>
                     <h3>Mes paramètres</h3>
@@ -71,9 +62,7 @@ include '../assets/header.php'
                         <dt>Nombre de J'aime reçus</dt>
                         <dd><?php echo "$user[totalrecieved]"?></dd>
                     </dl>
-
                 </article>
-                
             </main>
         </div>
     </body>

@@ -1,6 +1,4 @@
-<?php
-include '../assets/blank_header.php';
-?>
+<?php include '../assets/blank_header.php';?>
 <!doctype html>
 <html lang="fr">
     <head>

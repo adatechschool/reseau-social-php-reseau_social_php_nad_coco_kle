@@ -1,4 +1,5 @@
 <?php
+
 $hastag = "#";
 
 if (!isset($post['tagidlist'])) {
@@ -9,12 +10,8 @@ if (!isset($post['tagidlist'])) {
     }
 }
 
-?>
-<?php $explodeTag = explode(",", $post['taglist']) ?>
-<?php $explodeTagId = explode(",", $post['tagidlist']);?>
-
-<?php
-
+$explodeTag = explode(",", $post['taglist']);
+$explodeTagId = explode(",", $post['tagidlist']);
 
 while ($explodeTag) {
 

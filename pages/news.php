@@ -1,9 +1,8 @@
 <?php
-include '../assets/notConnected.php';
-include '../connect.env';
-include '../assets/header.php';
-
-    ?>
+    include '../assets/notConnected.php';
+    include '../connect.env';
+    include '../assets/header.php';
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -33,11 +32,9 @@ include '../assets/header.php';
                     exit();
                 }
 
-            // Etape 2: Poser une question à la base de donnée et récupérer ses informations
-            // cette requete vous est donnée, elle est complexe mais correcte, 
-            // si vous ne la comprenez pas c'est normal, passez, on y reviendra
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
+            posts.id,
             users.alias as author_name,
             users.id as author_id,
             count(likes.id) as like_number,
@@ -50,9 +47,7 @@ include '../assets/header.php';
         LEFT JOIN likes ON likes.post_id  = posts.id
         GROUP BY posts.id
         ORDER BY posts.created DESC
-        LIMIT 15;
-        
-                    "; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
+        LIMIT 15"; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
             
             $lesInformations = $mysqli->query($laQuestionEnSql);
             // Vérification
@@ -62,19 +57,12 @@ include '../assets/header.php';
                 echo ("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
                 exit();
             }
-               
 
-                // Parcourir ces données et les ranger bien comme il faut dans du html
-                // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
-                while ($post = $lesInformations->fetch_assoc())
-                {           
-                ?>
-            
-            <?php require("../assets/post.php")?>
-
-            <?php
-                // avec le <?php ci-dessus on retourne en mode php 
-            } // cette accolade ferme et termine la boucle while ouverte avant.
+            // Parcourir ces données et les ranger bien comme il faut dans du html
+            // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
+            while ($post = $lesInformations->fetch_assoc()){           
+                require("../assets/post.php");
+            }
             ?>
 
         </main>

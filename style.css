@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(28, 152, 152);
+    background: radial-gradient(rgb(106, 101, 101), rgb(0, 0, 0)); 
     font-family: Arial;
 }
 
@@ -153,4 +153,13 @@ body>header #user:hover ul{
 
 pre{
     color:#aaa;
+}
+
+#write_post {
+   min-height: 150px;
+   min-width: 800px;
+}
+
+#submit {
+    background-color : aqua;
 }

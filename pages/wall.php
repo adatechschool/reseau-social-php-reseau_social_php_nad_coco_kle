@@ -44,10 +44,10 @@ include '../assets/header.php';
 
                 <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
                     $sql = "INSERT INTO followers (following_user_id, followed_user_id)
-                            SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
-                            WHERE NOT EXISTS (
-                            SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'
-                            ) LIMIT 1";
+                                SELECT * FROM (SELECT '$currentUserId', '$userId') AS tmp
+                                    WHERE NOT EXISTS (
+                                        SELECT * FROM followers WHERE following_user_id = '$currentUserId' AND followed_user_id = '$userId'
+                                            ) LIMIT 1";
                     
                     if(isset($_POST['subscribe']))
                     {
@@ -108,12 +108,7 @@ include '../assets/header.php';
                         }
                     }
                     ?>                
-
-                <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton -->
             </section>
-            <?php require("../assets/write_a_post.php") ?>
-
-
         </aside>
 
         <main>
@@ -123,6 +118,7 @@ include '../assets/header.php';
              */
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
+            posts.id,
             users.alias as author_name,
             users.id as author_id,
             COUNT(likes.id) as like_number,
@@ -140,18 +136,16 @@ include '../assets/header.php';
             $lesInformations = $mysqli->query($laQuestionEnSql);
             if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli->error);
-            }
+            };
 
-            /**
-             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-             */
+            require("../assets/write_a_post.php");
+            
             while ($post = $lesInformations->fetch_assoc()) {
+                
+                require("../assets/post.php");
+            
 
-                // echo "<pre>" . print_r($post, 1) . "</pre>";
-                ?>
-                <?php require("../assets/post.php") ?>
-
-            <?php } ?>
+             } ?>
         </main>
     </div>
 </body>

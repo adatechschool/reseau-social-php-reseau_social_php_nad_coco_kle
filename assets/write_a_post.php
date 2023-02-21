@@ -1,10 +1,10 @@
 <section>
-<form method="post" action="../pages/wall.php?user_id= <?php echo $userId ?>">
+<form method="post" action="../pages/wall.php?user_id=<?php echo $userId ?>">
                     <dl>
-                        <dt><label for='postToSend'>Ecrivez ici</label></dt>
-                        <dd><input type='text' name='postToSend'></dd>
+                        <!-- <dt><label for='postToSend'></label></dt> -->
+                        <dd><input id="write_post" type='text' placeholder="Quelles nouvelles aujourd'hui ? " name='postToSend'></dd>
                     </dl>
-                    <input type='submit'>
+                    <input id="submit" type='submit'>
                 </form>
 </section>
 
@@ -12,9 +12,9 @@
 
 // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $new_post = $_POST['postToSend'];
-    // Step 4: Sanitize the input
-    $new_post = $mysqli->real_escape_string($new_post);
+  $new_post = $_POST['postToSend'];
+  // Step 4: Sanitize the input
+  $new_post = $mysqli->real_escape_string($new_post);
     
     preg_match_all("/#\w+/", $new_post, $post_tags);
     

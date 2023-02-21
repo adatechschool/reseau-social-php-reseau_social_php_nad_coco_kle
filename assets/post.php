@@ -16,7 +16,7 @@
         <small>❤
             <?php echo $post['like_number'] ?>
         </small>
-
+        <?php echo $post['id']; ?>
         <?php require("tags_management.php") ?>
 
     </footer>

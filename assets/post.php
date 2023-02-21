@@ -1,3 +1,4 @@
+<?php session_start();?>
 <article>
     <h3>
         <time>
@@ -13,9 +14,9 @@
         </p>
     </div>
     <footer>
-        <small>❤
-            <form method="post" action="../assets/likes_management.php?userid=<?php $_POST['user_id']?>?postid=<?php $_POST['postId'] ?>">
-                <input type="submit" name="postId" value="<?php echo $post['id']?>">
+        <small>
+            <form method="post" action="../assets/likes_management.php?user_id=<?php echo $_SESSION['connected_id']?>&post_id=<?php echo $post['id'] ?>">
+                <input type="submit" name="postId" value="❤">
             </form>
             <?php echo $post['like_number'];
             require("assets/likes_management.php"); ?>

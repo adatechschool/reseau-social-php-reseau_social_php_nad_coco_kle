@@ -1,7 +1,7 @@
 <?php
 include '../connect.env';
 include '../assets/header.php'
-    ?>
+?>
 <!doctype html>
 <html lang="fr">
 
@@ -17,13 +17,13 @@ include '../assets/header.php'
         <?php
         // On récupère l'id de l'utilisateur à qui appartient le mur
         $userId = intval($_GET['user_id']);
-        // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisateur en cours qui souhaite s'abonner
+        // A MODIFIER AVEC LES SESSIONS / on récupère l'id de l'utilisatrice en cours qui souhaite s'abonner
         $currentUserId = isset($_SESSION['connected_id']) ? intval($_SESSION['connected_id']) : 0; // fixed notice and added isset()
         ?>
 
         <aside>
             <?php
-            /* Etape 3: récupérer le nom de l'utilisateur*/
+            // On récupère l'id utilisatrice
             $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
             $lesInformations = $mysqli->query($laQuestionEnSql);
             $user = $lesInformations->fetch_assoc();
@@ -38,8 +38,6 @@ include '../assets/header.php'
                     (n°
                     <?php echo $userId ?>)
                 </p>
-               
-            
         
                 <?php // Exécute la requête SQL pour ajouter l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
                     $sql = "INSERT INTO followers (following_user_id, followed_user_id)
@@ -66,12 +64,12 @@ include '../assets/header.php'
                     ?> 
                      
                     <p id="subscribe">
-                        <form method="post" action="wall.php?user_id= <?php echo $userId ?>">
+                        <form method="post" action="wall.php?user_id=<?php echo $userId ?>">
                             <input type="submit" name="subscribe" value="S'abonner à <?php echo $user["alias"] ?>">
                         </form>
                     </p>
                         
-                    <?php // Exécute la requête SQL pour supprimer l'utilisateur courant comme follower de l'utilisateur avec l'ID spécifié
+                    <?php // Exécute la requête SQL pour supprimer l'utilisatrice courante comme follower de l'utilisatrice avec l'ID spécifié
                     $sql = "DELETE FROM followers WHERE following_user_id = $currentUserId AND followed_user_id = $userId";
                     if(isset($_POST['unsubscribe']))
                     {
@@ -98,15 +96,13 @@ include '../assets/header.php'
                              <!-- je veux qu'au reload je vérifie si je suis déjà abonné alors tu ne m'affiche pas le bouton --> 
             </section>
             <?php require("../assets/write_a_post.php")?>
-
-
         </aside>
 
         <main>
             <?php
             /**
-             * Etape 3: récupérer tous les messages de l'utilisatrice
-             */
+            * Récupérer tous les messages de l'utilisatrice
+            */
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
             posts.id,
@@ -128,17 +124,9 @@ include '../assets/header.php'
                     if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli-> error);
             }
-
-            /**
-             * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-             */
             while ($post = $lesInformations->fetch_assoc()) {
-
-                // echo "<pre>" . print_r($post, 1) . "</pre>";
-                ?>
-            <?php require("../assets/post.php")?>
-
-            <?php } ?>
+                require("../assets/post.php");
+            } ?>
         </main>
     </div>            
 </body>

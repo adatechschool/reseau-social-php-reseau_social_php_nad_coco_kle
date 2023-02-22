@@ -1,5 +1,5 @@
 <?php
-include "connect.env"
+include "../connect.env";
 ?>
 <header>
     <a href='../pages/admin.php'><img src="../img/logo.jpg" alt="Logo de notre réseau social"/></a>
@@ -9,7 +9,7 @@ include "connect.env"
             <a href="../pages/feed.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Flux</a>
             <a href="../pages/tags.php?tag_id=1">Mots-clés</a>
             <a> <form id= "searchbox" action="" method="post"> 
-                <input class="research" type="text" size= "40" name="search" placeholder=" Rechercher un utilisateur">
+            THÉO_SEARCH_BAR<br><input class="research" type="text" size= "40" name="search" placeholder=" Rechercher un utilisateur">
                 <input class="button-submit" type="submit" value="🔍">
             </form></a>
         </nav>
@@ -35,7 +35,7 @@ include "connect.env"
     if ($user) {
         header("Location: wall.php?user_id=" . $user['id']);
     } else {
-        ?> <div class="error_user"> <?php echo "ERROR USER NOT FOUND"; ?></div>
+        ?> <div class="error_user"> <?php echo "ERROR THÉO DID NOT FIND THE USER ;)"; ?></div>
         <?php
     }
 }

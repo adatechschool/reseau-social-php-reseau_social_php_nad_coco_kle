@@ -25,9 +25,9 @@
         <aside>
             <?php
             // On récupère l'id utilisatrice
-            $laQuestionEnSql = "SELECT * FROM users WHERE id= '$userId' ";
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            $user = $lesInformations->fetch_assoc();
+            $laQuestionEnSql3 = "SELECT * FROM users WHERE id= '$userId' ";
+            $lesInformations3 = $mysqli->query($laQuestionEnSql3);
+            $user = $lesInformations3->fetch_assoc();
             ?>
 
             <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
@@ -103,11 +103,30 @@
                     } ?>                
             </section>
         </aside>
+<?php
 
+$likePost = isset($_POST['postId']);
+            if ($likePost) {
+                $postId = $_POST['postId'];
+                $userId = $_POST['currentUserId'];
+                $ajoutLike = "INSERT INTO likes "
+                    . "(id, user_id, post_id)"
+                    . "VALUES (NULL, "
+                    . $_SESSION['connected_id'] . ", "
+                    . $postId . ")"
+                ;
+                $ok = $mysqli->query($ajoutLike);
+                if (!$ok) {
+                    echo ("Échec de la requete : " . $mysqli->error);
+                } else {
+                    echo "work";
+                }
+            }
+?>
         <main>
             <?php
             // Récupérer tous les messages de l'utilisatrice
-            $laQuestionEnSql = "SELECT posts.content,
+            $laQuestionEnSql2 = "SELECT posts.content,
             posts.created,
             posts.id,
             posts.id,
@@ -126,16 +145,18 @@
             ORDER BY posts.created DESC;
             ";
 
-            $lesInformations = $mysqli->query($laQuestionEnSql);
-            if (!$lesInformations) {
+            $lesInformations2 = $mysqli->query($laQuestionEnSql2);
+            if (!$lesInformations2) {
                 echo ("Échec de la requete : " . $mysqli->error);
             };
 
             require("../assets/write_a_post.php");
             
-            while ($post = $lesInformations->fetch_assoc()) {
+            while ($post = $lesInformations2->fetch_assoc()) {
                 require("../assets/post.php");
-            } ?>
+           } 
+            ?>
+            
         </main>
     </div>
 </body>

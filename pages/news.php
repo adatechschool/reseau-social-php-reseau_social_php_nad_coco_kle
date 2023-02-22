@@ -21,6 +21,7 @@
                         tous les utilisatrices du site.</p>
                 </section>
             </aside>
+           
             <main>        
                 <?php
                 if ($mysqli->connect_errno)

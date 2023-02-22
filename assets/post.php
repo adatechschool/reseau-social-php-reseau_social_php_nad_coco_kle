@@ -1,6 +1,6 @@
 <?php
     include "../connect.env";
-    session_start();
+    //session_start();
 ?>
 
 <article>
@@ -44,7 +44,10 @@
                     ?>
         </small>
         <?php
-        require("../assets/tags_management.php");
+        require("write_a_comment.php");
+        require("tags_management.php");
+        require("display_comments.php");
+
         ?>
 
     </footer>

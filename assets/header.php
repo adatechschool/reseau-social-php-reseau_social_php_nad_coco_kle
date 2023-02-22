@@ -2,7 +2,7 @@
 include "../connect.env";
 ?>
 <header>
-    <a href='../pages/admin.php'><img src="../img/logo.jpg" alt="Logo de notre réseau social"/></a>
+    <a href='../pages/admin.php'><img src="../img/lineUp.jpg" alt="Logo de notre réseau social"/></a>
         <nav id="menu">
             <a href="../pages/news.php">Actualités</a>
             <a href="../pages/wall.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mur</a>
@@ -29,11 +29,11 @@ include "../connect.env";
 
     if (isset($_POST['search'])) {
     $search = $_POST['search'];
-    $laQuestionEnSql = "SELECT * FROM `users` WHERE alias= '$search' ";
-    $lesInformations = $mysqli->query($laQuestionEnSql);
-    $user = $lesInformations->fetch_assoc();
-    if ($user) {
-        header("Location: wall.php?user_id=" . $user['id']);
+    $search_query = "SELECT * FROM `users` WHERE alias= '$search' ";
+    $search_response = $mysqli->query($search_query);
+    $search_user = $search_response->fetch_assoc();
+    if ($search_user) {
+        header("Location: wall.php?user_id=" . $search_user['id']);
     } else {
         ?> <div class="error_user"> <?php echo "ERROR THÉO DID NOT FIND THE USER ;)"; ?></div>
         <?php

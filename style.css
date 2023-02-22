@@ -34,7 +34,7 @@ body>header #menu a{
 }
 body>header a:hover
 {
-    background-color: #99b;
+    background-color: beige;
 }
 body>header ul{list-style: none;}
 body>header #user

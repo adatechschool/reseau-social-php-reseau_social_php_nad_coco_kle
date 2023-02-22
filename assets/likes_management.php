@@ -12,8 +12,6 @@ $likePost = isset($_POST['postId']);
                 $ok = $mysqli->query($ajoutLike);
                 if (!$ok) {
                     echo ("Échec de la requete : " . $mysqli->error);
-                } else {
-                    echo "work";
                 }
             }
 ?>

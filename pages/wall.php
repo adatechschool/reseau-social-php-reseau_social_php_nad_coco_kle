@@ -106,23 +106,7 @@
         </aside>
 <?php
 
-$likePost = isset($_POST['postId']);
-            if ($likePost) {
-                $postId = $_POST['postId'];
-                $userId = $_POST['currentUserId'];
-                $ajoutLike = "INSERT INTO likes "
-                    . "(id, user_id, post_id)"
-                    . "VALUES (NULL, "
-                    . $_SESSION['connected_id'] . ", "
-                    . $postId . ")"
-                ;
-                $ok = $mysqli->query($ajoutLike);
-                if (!$ok) {
-                    echo ("Échec de la requete : " . $mysqli->error);
-                } else {
-                    echo "work";
-                }
-            }
+require("../assets/likes_management.php");
 ?>
         <main>
             <?php
@@ -153,7 +137,7 @@ $likePost = isset($_POST['postId']);
             if ($user["id"] == $currentUserId ){
                 require("../assets/write_a_post.php");
             }
-            while ($post = $lesInformations->fetch_assoc()) {
+            while ($post = $lesInformations2->fetch_assoc()) {
                 if ($post['enfant_post_id'] == null){
                     require("../assets/post.php");
                 }

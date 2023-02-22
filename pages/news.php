@@ -20,7 +20,7 @@
                         tous les utilisatrices du site.</p>
                 </section>
             </aside>
-           
+            <?php require("../assets/likes_management.php"); ?>
             <main>        
                 <?php
                 if ($mysqli->connect_errno)

@@ -36,6 +36,7 @@
 
                 </section>
             </aside>
+            <?php require("../assets/likes_management.php"); ?>
             <main>
                 <?php
                 // Récupérer tous les messages avec un mot clé donné

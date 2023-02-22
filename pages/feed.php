@@ -30,6 +30,7 @@
                     </p>
                 </section>
             </aside>
+            <?php require("../assets/likes_management.php"); ?>
             <main>
                 <?php
                 $laQuestionEnSql = "SELECT posts.content,

@@ -10,7 +10,7 @@
 <?php
 
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if (isset($_POST['commentToSend'])) {
       $userId = $_SESSION['connected_id'];
       $parent_post_id = $post['id'];
       $new_comment = $_POST['commentToSend'];

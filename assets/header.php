@@ -2,7 +2,7 @@
 include "../connect.env";
 ?>
 <header>
-    <a id="admin" href='../pages/admin.php'><img src="../img/urbexe.png" alt="notre logo :)"/></a>
+    <a href='../pages/admin.php'><img src="../img/urbexe.png" alt="notre logo :)"/></a>
         <nav id="menu">
             <a href="../pages/news.php">news</a>
             <a href="../pages/wall.php?user_id=<?php echo $_SESSION['connected_id'] ?>">wall</a>
@@ -23,20 +23,17 @@ include "../connect.env";
             </ul>
         </nav>
 </header>
-        <?php
-        
+<?php
+
 // PART SEARCH
 
-    if (isset($_POST['search'])) {
+if (isset($_POST['search'])) {
     $search = $_POST['search'];
     $search_query = "SELECT * FROM `users` WHERE alias= '$search' ";
     $search_response = $mysqli->query($search_query);
     $search_user = $search_response->fetch_assoc();
     if ($search_user) {
         header("Location: wall.php?user_id=" . $search_user['id']);
-    } else {
-        ?> <div class="error_user"> <?php echo "ERROR THÉO DID NOT FIND THE USER ;)"; ?></div>
-        <?php
     }
 }
 ?>

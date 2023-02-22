@@ -56,7 +56,7 @@ body>header #user ul{
     margin:0;
     margin-left:-5em;
     background-color: #fff;
-    border: 1px solid #99b;
+    
 
     z-index: 1;
 }
@@ -64,7 +64,7 @@ body>header #user ul li a{
     display:block;
     width:10em;
     padding:1em;
-    border-bottom: 1px solid #99b;
+    /* border-bottom: 1px solid #99b; */
 }
 body>header #user:hover ul{
     display:block;

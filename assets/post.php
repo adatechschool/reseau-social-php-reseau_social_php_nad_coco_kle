@@ -27,21 +27,21 @@
                 </form>
                 <?php
 
-$currentUserId = isset ($_POST['currentUserId']) ? $_POST['currentUserId']:0;
-$postId = isset ($_POST['postId']) ? $_POST['postId']:0;
+$currentUserId = (isset($_POST['currentUserId'])) ? $_POST['currentUserId'] : 0;
+$postId = (isset($_POST['postId'])) ? $_POST['postId'] : 0;
 
 if (isset($_POST['postId']) AND isset($_POST['currentUserId'])) {
-
     $lInstructionSql = "INSERT INTO likes (post_id, user_id)
                         SELECT * FROM (SELECT $postId, $currentUserId) AS tmp
-                            WHERE NOT EXISTS (SELECT * FROM likes WHERE postId = $postId AND userId = $currentUserId)
+                            WHERE NOT EXISTS (SELECT * FROM likes WHERE postId = $postId AND currentUserId = $currentUserId)
                                 LIMIT 1";
     $ok = $mysqli->query($lInstructionSql);
     if (!$ok){
         echo ("ERROR: " . $mysqli->error);
     } else { echo ("Merci de répandre l'amour <3")
         ;}
-}
+    }
+    
 ?>
 
 <meta http-equiv="refresh" />

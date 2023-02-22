@@ -14,8 +14,13 @@
         <div id="wrapper" >
 
             <aside>
-                <h2>Présentation</h2>
-                <p>Bienvenue sur notre réseau social.</p>
+                <h2>REGISTER</h2>
+                <p>Bienvenue chez URB.exe !
+                    <br>
+                    <br>Ici, tu peux partager ta passion : tes conseils, tes expériences (#storytime), tes plus belles citations et photos autour de l'exploration urbaine !
+                    <br>
+                    <br>Rejoins vite nos 100.000 abonné.e.s !
+                </p>
             </aside>
             <main>
                 <article>

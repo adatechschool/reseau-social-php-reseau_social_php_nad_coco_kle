@@ -2,7 +2,7 @@
 session_start();
 ?>
 <header>
-    <img src="../img/resoc.jpg" alt="Logo de notre réseau social"/>
+    <img src="../img/urbexe.png" alt="notre logo"/>
         <nav id="menu">
 
         </nav>

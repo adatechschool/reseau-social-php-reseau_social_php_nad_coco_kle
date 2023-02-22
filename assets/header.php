@@ -29,11 +29,11 @@ include '../connect.env'
 
     if (isset($_POST['search'])) {
     $search = $_POST['search'];
-    $laQuestionEnSql = "SELECT * FROM `users` WHERE alias= '$search' ";
-    $lesInformations = $mysqli->query($laQuestionEnSql);
-    $user = $lesInformations->fetch_assoc();
-    if ($user) {
-        header("Location: wall.php?user_id=" . $user['id']);
+    $search_query = "SELECT * FROM `users` WHERE alias= '$search' ";
+    $search_response = $mysqli->query($search_query);
+    $search_user = $search_response->fetch_assoc();
+    if ($search_user) {
+        header("Location: wall.php?user_id=" . $search_user['id']);
     } else {
         ?> <div class="error_user"> <?php echo "ERROR USER NOT FOUND"; ?></div>
         <?php

@@ -1,6 +1,5 @@
 <?php
     include '../assets/notConnected.php';
-    include '../connect.env';
     include '../assets/header.php';
 ?>
 <!doctype html>
@@ -25,10 +24,7 @@
                 <?php
                 if ($mysqli->connect_errno)
                 {
-                    echo "<article>";
                     echo("Échec de la connexion : " . $mysqli->connect_error);
-                    echo("<p>Indice: Vérifiez les parametres de <code>new mysqli(...</code></p>");
-                    echo "</article>";
                     exit();
                 }
 
@@ -53,9 +49,7 @@
             $lesInformations = $mysqli->query($laQuestionEnSql);
             // Vérification
             if (!$lesInformations) {
-                echo "<article>";
                 echo ("Échec de la requete : " . $mysqli->error);
-                echo ("<p>Indice: Vérifiez la requete  SQL suivante dans phpmyadmin<code>$laQuestionEnSql</code></p>");
                 exit();
             }
 

@@ -7,8 +7,8 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ReSoC - Flux</title>         
-        <meta name="author" content="Julien Falconnet">
+        <title>URB.exe - feed</title>         
+        <meta name="author" content="Klervy, Corentin, Nadège">
         <link rel="stylesheet" href="../style.css"/>
 
     </head>

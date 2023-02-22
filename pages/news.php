@@ -6,8 +6,8 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ReSoC - Actualités</title> 
-        <meta name="author" content="Julien Falconnet">
+        <title>URB.exe - news</title> 
+        <meta name="author" content="Klervy, Corentin, Nadège">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
@@ -15,9 +15,8 @@
             <aside>
                 <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages de
-                        tous les utilisatrices du site.</p>
+                    <h3>Quoi d'neuf docteur ?</h3>
+                    <p>Les dernières news de nos utilisateurs.trices !</p>
                 </section>
             </aside>
             <?php require("../assets/likes_management.php"); ?>

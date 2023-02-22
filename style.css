@@ -1,9 +1,10 @@
 body{
     background-size: cover;
-    background-image: url(img/URBEX.jpg);
-    background-size: 100%;
+    background-image: url(./img/tegan-mierle-ioyEITUD2G8-unsplash.jpg);
+    background-size: 150%;
     background-position: center center;; 
     font-family: Arial;
+    width:auto;
 }
 
 a{text-decoration: none; color:black;}
@@ -11,18 +12,21 @@ a:hover{text-decoration: underline;}
 
 body>header{
     background-color: #fff;
-    display:flex;
-    width:80em;
-    margin:0 auto 2em auto;    
-    padding:0;
-
+    display: flex;
+    width: auto;
+    margin: 0 auto 2em auto;
+    padding: 0;
+    border-radius: 1em;
+    overflow: hidden;
+    justify-content: space-between;
 }
 body>header img{
     height:5em;
+    margin:1em;
 }
 body>header #menu {
     display:flex;
-    width:50%;
+    width:100%;
     align-items: stretch;
     border-left: 1px solid #99b;
 }
@@ -34,15 +38,14 @@ body>header #menu a{
 }
 body>header a:hover
 {
-    background-color: beige;
+    background-color: rgba(217,219,241,0.3);
 }
 body>header ul{list-style: none;}
-body>header #user
-{
-    margin-left: auto;
-    flex:0.2;
-    border-left: 1px solid #99b;
-}
+body>header #user{
+        border-left: 1px solid #99b;
+        width: 96px;
+        width: 150px;
+    }
 body>header #user>a{
     display:block;
     text-align: center;
@@ -73,7 +76,7 @@ body>header #user:hover ul{
 
 #wrapper{
     display:flex;    
-    width:80em;
+    width:100%;
     margin:0 auto 2em auto;
 }
 #wrapper aside{
@@ -161,6 +164,8 @@ pre{
 #write_post {
    min-height: 150px;
    min-width: 800px;
+   border-radius:1em;
+   border-style:none;
 }
 
 .error_user {

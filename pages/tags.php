@@ -7,8 +7,8 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ReSoC - Les message par mot-clé</title> 
-        <meta name="author" content="Julien Falconnet">
+        <title>URB.exe - tags</title> 
+        <meta name="author" content="Klervy, Corentin, Nadège">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
@@ -28,10 +28,9 @@
                 ?>
                 <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé <?php echo $tag['label'] ?>
-                        (n° <?php echo $tagId ?>)
+                    <h3>#TAGS</h3>
+                    <p>Les dernières news à propos de
+                        <br># <?php echo $tag['label'] ?>
                     </p>
 
                 </section>

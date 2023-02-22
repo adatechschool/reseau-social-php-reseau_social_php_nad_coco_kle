@@ -7,8 +7,8 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>ReSoC - Mes abonnements</title> 
-        <meta name="author" content="Julien Falconnet">
+        <title>URB.exe - subscriptions</title> 
+        <meta name="author" content="Klervy, Corentin, Nadège">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
@@ -47,7 +47,7 @@
                
                 while ($sub = $lesInformations->fetch_assoc())
                 { ?>
-                
+
                    <article>
                     <img src="../img/user.jpg" alt="blason"/>
                     <h3><a href="wall.php?user_id=<?php echo $sub["id"] ?>"><?php echo $sub["alias"] ?></a></h3>

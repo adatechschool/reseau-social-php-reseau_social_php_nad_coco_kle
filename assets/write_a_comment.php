@@ -1,8 +1,8 @@
 <section>
   <form method="post" >
     <dl>
-      <dt><label for='commentToSend'>Ecrivez ici</label></dt>
-      <dd><input type='text' name='commentToSend'></dd>
+      <!-- <dt><label for='commentToSend'>Ecrivez ici</label></dt> -->
+      <dd><input type='text' name='commentToSend' placeholder="et toi? t'en penses quoi?"></dd>
     </dl>
     <input type='submit'>
   </form>

@@ -3,15 +3,15 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>KleCoNa - Connexion</title> 
-        <meta name="author" content="Julien Falconnet">
+        <title>URB.exe - login</title> 
+        <meta name="author" content="Klervy, Corentin, Nadège">
         <link rel="stylesheet" href="../style.css"/>
     </head>
     <body>
         <div id="wrapper" >
             <aside>
-                <h2>Présentation</h2>
-                <p>Bienvenue sur notre réseau social.</p>
+                <h2>LOGIN</h2>
+                <p>Bienvenue sur notre plateforme dédiée aux fans d'urbex !</p>
             </aside>
             <main>
                 <article>
@@ -68,7 +68,7 @@
                     </form>
                     <p>
                         Pas de compte?
-                        <a href='registration.php'>Inscrivez-vous.</a>
+                        <a href='registration.php'><strong>Inscrivez-vous.</strong></a>
                     </p>
                 </article>
             </main>

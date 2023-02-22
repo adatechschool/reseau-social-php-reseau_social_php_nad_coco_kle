@@ -8,8 +8,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ReSoC - Mur</title>
-    <meta name="author" content="Julien Falconnet">
+    <title>URB.exe - wall</title>
+    <meta name="author" content="Klervy, Corentin, Nadège">
     <link rel="stylesheet" href="../style.css" />
 </head>
 

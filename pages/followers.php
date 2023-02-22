@@ -8,8 +8,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>ReSoC - Mes abonnés </title>
-    <meta name="author" content="Julien Falconnet">
+    <title>URB.exe - followers </title>
+    <meta name="author" content="Klervy, Corentin, Nadège">
     <link rel="stylesheet" href="../style.css" />
 </head>
 
@@ -18,7 +18,7 @@
         <aside>
             <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
             <section>
-                <h3>Présentation</h3>
+                <h3>Mes abonné.e.s</h3>
                 <p>Sur cette page vous trouverez la liste des personnes qui
                     suivent les messages de l'utilisatrice n° <?php echo intval($_GET['user_id']) ?>
                 </p>

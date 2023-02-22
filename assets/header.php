@@ -1,8 +1,8 @@
 <?php
-include "connect.env"
+include '../connect.env'
 ?>
 <header>
-    <a href='../pages/admin.php'><img src="../img/logo.jpg" alt="Logo de notre réseau social"/></a>
+    <a href='../pages/admin.php'><img src="../img/lineUp.jpg" alt="Logo de notre réseau social"/></a>
         <nav id="menu">
             <a href="../pages/news.php">Actualités</a>
             <a href="../pages/wall.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mur</a>

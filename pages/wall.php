@@ -102,6 +102,7 @@
                         }
                     } ?>                
             </section>
+            
         </aside>
 
         <main>
@@ -110,10 +111,10 @@
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
             posts.id,
-            posts.id,
+            posts.parent_id as enfant_post_id,
             users.alias as author_name,
             users.id as author_id,
-            COUNT(likes.id) as like_number,
+            count(likes.id) as like_number,
             GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.label) AS taglist,
             GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
             FROM posts
@@ -130,11 +131,13 @@
             if (!$lesInformations) {
                 echo ("Échec de la requete : " . $mysqli->error);
             };
-
-            require("../assets/write_a_post.php");
-            
+            if ($user["id"] == $currentUserId ){
+                require("../assets/write_a_post.php");
+            }
             while ($post = $lesInformations->fetch_assoc()) {
-                require("../assets/post.php");
+                if ($post['enfant_post_id'] == null){
+                    require("../assets/post.php");
+                }
             } ?>
         </main>
     </div>

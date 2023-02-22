@@ -37,17 +37,18 @@
             posts.id,
             users.alias as author_name,
             users.id as author_id,
+            posts.parent_id as enfant_post_id,
             count(likes.id) as like_number,
             GROUP_CONCAT(DISTINCT tags.label ORDER BY tags.label) AS taglist,
-                    GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
-        FROM posts
-        JOIN users ON users.id=posts.user_id
-        LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
-        LEFT JOIN tags ON posts_tags.tag_id  = tags.id
-        LEFT JOIN likes ON likes.post_id  = posts.id
-        GROUP BY posts.id
-        ORDER BY posts.created DESC
-        LIMIT 15"; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
+            GROUP_CONCAT(DISTINCT tags.id ORDER BY tags.label) AS tagidlist
+            FROM posts
+            JOIN users ON users.id=posts.user_id
+            LEFT JOIN posts_tags ON posts.id = posts_tags.post_id
+            LEFT JOIN tags ON posts_tags.tag_id  = tags.id
+            LEFT JOIN likes ON likes.post_id  = posts.id
+            GROUP BY posts.id
+            ORDER BY posts.created DESC
+            LIMIT 15"; // query pour select les tag SELECT * FROM `posts` WHERE `content` LIKE '%#tagname%'
             
             $lesInformations = $mysqli->query($laQuestionEnSql);
             // Vérification
@@ -60,13 +61,13 @@
 
             // Parcourir ces données et les ranger bien comme il faut dans du html
             // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
-            while ($post = $lesInformations->fetch_assoc()){           
-                require("../assets/post.php");
-            }
-            ?>
+            while ($post = $lesInformations->fetch_assoc()){  
+                if ($post['enfant_post_id'] == null){         
+                    require("../assets/post.php");
+                }
+            }?>
 
-        </main>
-    </div>
-</body>
-
+            </main>
+        </div>
+    </body>
 </html>

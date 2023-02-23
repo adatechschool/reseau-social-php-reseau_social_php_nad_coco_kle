@@ -1,32 +1,33 @@
 <?php
-    include '../assets/notConnected.php';
-    include '../assets/header.php';
+include '../assets/notConnected.php';
+include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>URB.exe - news</title> 
-        <meta name="author" content="Klervy, Corentin, Nadège">
-        <link rel="stylesheet" href="../style.css"/>
-    </head>
-    <body>
-        <div id="wrapper">
-            <aside>
-                <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Quoi d'neuf docteur ?</h3>
-                    <p>Les dernières news de nos utilisateurs.trices !</p>
-                </section>
-            </aside>
-            <?php require("../assets/likes_management.php"); ?>
-            <main>        
-                <?php
-                if ($mysqli->connect_errno)
-                {
-                    echo("Échec de la connexion : " . $mysqli->connect_error);
-                    exit();
-                }
+
+<head>
+    <meta charset="utf-8">
+    <title>URB.exe - news</title>
+    <meta name="author" content="Klervy, Corentin, Nadège">
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <aside>
+            <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>Quoi d'neuf docteur ?</h3>
+                <p>Les dernières news de nos utilisateurs.trices !</p>
+            </section>
+        </aside>
+        <?php require("../assets/likes_management.php"); ?>
+        <main>
+            <?php
+            if ($mysqli->connect_errno) {
+                echo ("Échec de la connexion : " . $mysqli->connect_error);
+                exit();
+            }
 
             $laQuestionEnSql = "SELECT posts.content,
             posts.created,
@@ -55,13 +56,14 @@
 
             // Parcourir ces données et les ranger bien comme il faut dans du html
             // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
-            while ($post = $lesInformations->fetch_assoc()){  
-                if ($post['enfant_post_id'] == null){         
+            while ($post = $lesInformations->fetch_assoc()) {
+                if ($post['enfant_post_id'] == null) {
                     require("../assets/post.php");
                 }
-            }?>
+            } ?>
 
-            </main>
-        </div>
-    </body>
+        </main>
+    </div>
+</body>
+
 </html>

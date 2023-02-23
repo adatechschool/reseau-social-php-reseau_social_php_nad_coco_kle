@@ -1,45 +1,48 @@
 <?php
-    include '../assets/notConnected.php';
-    include '../connect.env'; 
-    include '../assets/header.php'
-?>
+include '../assets/notConnected.php';
+include '../connect.env';
+include '../assets/header.php'
+    ?>
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>URB.exe - tags</title> 
-        <meta name="author" content="Klervy, Corentin, Nadège">
-        <link rel="stylesheet" href="../style.css"/>
-    </head>
-    <body>
-        <div id="wrapper">
+
+<head>
+    <meta charset="utf-8">
+    <title>URB.exe - tags</title>
+    <meta name="author" content="Klervy, Corentin, Nadège">
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <?php
+        // Le mur concerne un mot-clé en particulier
+        $tagId = intval($_GET['tag_id']);
+        ?>
+
+        <aside>
             <?php
-            // Le mur concerne un mot-clé en particulier
-            $tagId = intval($_GET['tag_id']);
+
+            // Récupérer le nom du mot-clé
+            $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $tag = $lesInformations->fetch_assoc();
             ?>
-            
-            <aside>
-                <?php
+            <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>#TAGS</h3>
+                <p>Les dernières news à propos de
+                    <br>#
+                    <?php echo $tag['label'] ?>
+                </p>
 
-                // Récupérer le nom du mot-clé
-                $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $tag = $lesInformations->fetch_assoc();
-                ?>
-                <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>#TAGS</h3>
-                    <p>Les dernières news à propos de
-                        <br># <?php echo $tag['label'] ?>
-                    </p>
-
-                </section>
-            </aside>
-            <?php require("../assets/likes_management.php"); ?>
-            <main>
-                <?php
-                // Récupérer tous les messages avec un mot clé donné
-                $laQuestionEnSql = "
+            </section>
+        </aside>
+        <?php require("../assets/likes_management.php"); ?>
+        <main>
+            <?php
+            // Récupérer tous les messages avec un mot clé donné
+            $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     posts.id,
@@ -58,18 +61,17 @@
                     GROUP BY posts.id
                     ORDER BY posts.created DESC  
                     ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
 
-                // Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                while ($post = $lesInformations->fetch_assoc())
-                {
-                    require("../assets/post.php");
-                } ?>
-            </main>
-        </div>
-    </body>
+            // Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+            while ($post = $lesInformations->fetch_assoc()) {
+                require("../assets/post.php");
+            } ?>
+        </main>
+    </div>
+</body>
+
 </html>

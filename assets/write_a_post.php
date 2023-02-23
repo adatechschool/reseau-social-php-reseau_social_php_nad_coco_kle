@@ -1,10 +1,10 @@
 <section>
   <form method="post" action="../pages/wall.php?user_id=<?php echo $userId ?>">
-      <div>
-        <input id="write_post" placeholder="Quelles nouvelles aujourd'hui ?" type='text' name='postToSend'>
+    <div>
+      <input id="write_post" placeholder="Quelles nouvelles aujourd'hui ?" type='text' name='postToSend'>
 
-      </div>
-      <input type='submit'>
+    </div>
+    <input type='submit'>
   </form>
 </section>
 

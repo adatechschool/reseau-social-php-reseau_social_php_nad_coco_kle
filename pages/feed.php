@@ -1,39 +1,43 @@
 <?php
-    include '../assets/notConnected.php';
-    include '../connect.env'; 
-    include '../assets/header.php';
+include '../assets/notConnected.php';
+include '../connect.env';
+include '../assets/header.php';
 ?>
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>URB.exe - feed</title>         
-        <meta name="author" content="Klervy, Corentin, Nadège">
-        <link rel="stylesheet" href="../style.css"/>
 
-    </head>
-    <body>
-        <div id="wrapper">
-            <?php $userId = intval($_GET['user_id']);?>
-            
-            <aside>
-                <?php
-                $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                $user = $lesInformations->fetch_assoc();
-                ?>
-                <img src="../img/user.jpg" alt="Portrait de l'utilisatrice"/>
-                <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquelles est abonnée l'utilisatrice <?php echo $user['alias'] ?> (n° <?php echo $userId ?>)
-                    </p>
-                </section>
-            </aside>
-            <?php require("../assets/likes_management.php"); ?>
-            <main>
-                <?php
-                $laQuestionEnSql = "SELECT posts.content,
+<head>
+    <meta charset="utf-8">
+    <title>URB.exe - feed</title>
+    <meta name="author" content="Klervy, Corentin, Nadège">
+    <link rel="stylesheet" href="../style.css" />
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <?php $userId = intval($_GET['user_id']); ?>
+
+        <aside>
+            <?php
+            $laQuestionEnSql = "SELECT * FROM `users` WHERE id= '$userId' ";
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            $user = $lesInformations->fetch_assoc();
+            ?>
+            <img src="../img/user.jpg" alt="Portrait de l'utilisatrice" />
+            <section>
+                <h3>Présentation</h3>
+                <p>Sur cette page vous trouverez tous les message des utilisatrices
+                    auxquelles est abonnée l'utilisatrice
+                    <?php echo $user['alias'] ?> (n°
+                    <?php echo $userId ?>)
+                </p>
+            </section>
+        </aside>
+        <?php require("../assets/likes_management.php"); ?>
+        <main>
+            <?php
+            $laQuestionEnSql = "SELECT posts.content,
                 posts.created,
                 posts.id,
                 users.alias as author_name,
@@ -51,20 +55,20 @@
                 WHERE followers.following_user_id=$userId 
                 GROUP BY posts.id
                 ORDER BY posts.created DESC;";
-         
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
+
+            $lesInformations = $mysqli->query($laQuestionEnSql);
+            if (!$lesInformations) {
+                echo ("Échec de la requete : " . $mysqli->error);
+            }
+
+            while ($post = $lesInformations->fetch_assoc()) {
+                if ($post['enfant_post_id'] == null) {
+                    require("../assets/post.php");
+
                 }
-                
-                while ($post = $lesInformations->fetch_assoc()) {
-                    if ($post['enfant_post_id'] == null){
-                        require("../assets/post.php");
-                
-                    }
-                }?>
-            </main>
-        </div>
-    </body>
+            } ?>
+        </main>
+    </div>
+</body>
+
 </html>

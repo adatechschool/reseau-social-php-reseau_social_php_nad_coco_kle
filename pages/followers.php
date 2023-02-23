@@ -1,7 +1,7 @@
 <?php
-    include '../assets/notConnected.php';
-    include '../connect.env';
-    include '../assets/header.php'
+include '../assets/notConnected.php';
+include '../connect.env';
+include '../assets/header.php'
     ?>
 <!doctype html>
 <html lang="fr">
@@ -20,7 +20,8 @@
             <section>
                 <h3>Mes abonné.e.s</h3>
                 <p>Sur cette page vous trouverez la liste des personnes qui
-                    suivent les messages de l'utilisatrice n° <?php echo intval($_GET['user_id']) ?>
+                    suivent les messages de l'utilisatrice n°
+                    <?php echo intval($_GET['user_id']) ?>
                 </p>
 
             </section>
@@ -46,10 +47,11 @@
                         <?php echo $follower["email"] ?>
                     </p>
                 </article>
-            <?php
+                <?php
             }
             ?>
         </main>
     </div>
 </body>
+
 </html>

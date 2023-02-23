@@ -4,7 +4,6 @@ include '../assets/blank_header.php';
 ?>
 <!doctype html>
 <html lang="fr">
-
 <head>
     <meta charset="utf-8">
     <title>URB.exe - registration</title>
@@ -16,13 +15,8 @@ include '../assets/blank_header.php';
     <div id="wrapper">
 
         <aside>
-            <h2>REGISTER</h2>
-            <p>Bienvenue chez URB.exe !
-                    <br>
-                    <br>Ici, tu peux partager ta passion : tes conseils, tes expériences (#storytime), tes plus belles citations et photos autour de l'exploration urbaine !
-                    <br>
-                    <br>Rejoins vite nos 100.000 abonné.e.s !
-                </p>
+            <h2>Présentation</h2>
+            <p>Bienvenue sur notre réseau social.</p>
         </aside>
         <main>
             <article>

@@ -20,9 +20,9 @@
             <main>
                 <article>
                     <?
-                        if($_GET['msg']){
+                        /*if($_GET['msg']){
                             echo $_GET['msg'];
-                        }
+                        }*/
                     ?>
                     <h2>Inscription</h2>
                     <?php

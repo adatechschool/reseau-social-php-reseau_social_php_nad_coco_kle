@@ -1,8 +1,7 @@
 <!--btn display and on click by id to differentiate posts -->
-<button onclick="showComments(<?php echo $post['id']; ?>)">See comment</button>
+<input type = "submit"  value ="Voir les commentaires"onclick="showComments(<?php echo $post['id']; ?>)"></input>
 
 <div id="comments-<?php echo $post['id']; ?>" style="display:none;">
-
     <?php
         //build the query and display in a loop
         $parent_post = $post['id'];
@@ -18,7 +17,7 @@
         $commentResult = $mysqli->query($commentQuery);
 
         while ($comment = $commentResult->fetch_assoc()) {
-            echo $comment['author_alias']," - ",$comment['content'],"<br>"; 
+            echo "<div class='comments'>",$comment['author_alias']," - ",$comment['content'],"</div>","<br>"; 
         }
     ?>
 </div>

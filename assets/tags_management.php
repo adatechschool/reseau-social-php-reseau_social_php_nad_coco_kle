@@ -12,14 +12,13 @@ if (!isset($post['tagidlist'])) {
 
 $explodeTag = explode(",", $post['taglist']);
 $explodeTagId = explode(",", $post['tagidlist']);
-
 while ($explodeTag) {
 
     $curentTag = array_shift($explodeTag);
     $curentTagId = array_shift($explodeTagId);
     ?>
 
-    <a href="../pages/tags.php?tag_id=<?php echo $curentTagId ?>"><?php echo $hastag, $curentTag ?></a>
+    <a href="../pages/tags.php?tag_id=<?php echo $curentTagId ?>"><?php echo $hastag, $curentTag?></a>
     <?php
 
 }

@@ -5,23 +5,25 @@
 
 <article>
     <h3>
-        <time>
-        <a href="../pages/wall.php?user_id=<?php echo $post["author_id"] ?>"><?php echo $post['author_name']?></a>
-        </time>
+        <div>
+        <strong><a href="../pages/wall.php?user_id=<?php echo $post["author_id"] ?>">Par <?php echo $post['author_name']?></a></strong>,  <?php echo $post['created'] ;?><br>
+        </div>
     </h3>
-    <address>
+        <br>
         
-        <?php 
-        echo $post['created'] ;?>
-        
-    </address>
+   
     <div>
         <p>
             <?php echo $post['content']; ?>
         </p>
+        <div id="tag">
+            <?php require("tags_management.php");?>
+        </div>
     </div>
     <footer>
-        <small>
+        <div id ="footer_post">
+
+        <div>
             <?php 
                     // si le like existe déjà (ligne récupérée dans ma requete précédente) -> no button affiché
                     // sinon : afficher le bouton <3
@@ -42,14 +44,14 @@
                    <?php };
                    
                     ?>
-        </small>
-        <?php
-        require("write_a_comment.php");
-        require("tags_management.php");
-        require("display_comments.php");
-
-        ?>
-
+        </div>
+        
+        <div id ="comments_parent">
+        <?php require("write_a_comment.php");?>
+        <?php require("display_comments.php");?>
+        </div>
+        
+    </div>
     </footer>
 </article>
 
